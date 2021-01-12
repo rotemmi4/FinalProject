@@ -1,3 +1,4 @@
+import uvicorn as uvicorn
 from fastapi import FastAPI
 from repositories import TextRepository
 from pydantic import BaseModel
@@ -38,3 +39,5 @@ def get_text_by_id():
 # @app.put("/texts/{id}")
 # def update_text():
 #     pass
+
+uvicorn.run(app, host="localhost", port=3000)
