@@ -8,7 +8,7 @@ def addtext(folderName):
         fname= folderName+"/"+file
         f = open(fname, "r")
         text= f.read()
-        TextConcrete.insert_text(None, text)
+        TextConcrete.insert_text("name", text)
 
 
 

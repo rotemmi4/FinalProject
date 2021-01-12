@@ -1,6 +1,6 @@
 
 def insert_text(name, content):
-    return ("INSERT INTO texts (name, content) values (?, ?)".format(name, content))
+    return ("INSERT INTO texts (name, content) values (?, ?)")
 
 def update_text(id, name, content):
     return ("UPDATE texts set name=?, content=? where id=?)", [name, content, id])

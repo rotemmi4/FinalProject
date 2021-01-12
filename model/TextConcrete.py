@@ -3,7 +3,8 @@ from model import TextDAO, sqlliteDButils
 
 def insert_text(name, content):
     query = TextDAO.insert_text(name, content)
-    return sqlliteDButils.execute_run(query)
+    val = (name, content)
+    return sqlliteDButils.execute_run(query,val)
 
 def update_text(id, name, content):
     query = TextDAO.update_text(id, name, content)
