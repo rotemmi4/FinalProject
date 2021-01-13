@@ -1,0 +1,24 @@
+Index: Algorithem.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import re\r\nimport random\r\nfrom nltk import tokenize\r\n\r\ndef getWeights(text,type):\r\n    arr = []\r\n    i=0\r\n    name = text[\"name\"]\r\n    sentences = re.split(r' [\\.\\?!][\\'\"\\)\\]] *', text[\"content\"])\r\n    for stuff in sentences:\r\n        if type=='random':\r\n            weight= \"%.2f\" % random.random()\r\n            dic= {\r\n                \"sentenceNum\":i,\r\n                \"content\": stuff,\r\n                \"weight\":weight\r\n            }\r\n            arr.append(dic)\r\n            i+=1\r\n\r\n    response={\r\n        \"sentences\": arr,\r\n        \"name\": name\r\n    }\r\n    return response\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Algorithem.py b/Algorithem.py
+--- a/Algorithem.py	(revision 914837292a14171afdee32d5cb2a86723be3b45b)
++++ b/Algorithem.py	(date 1610536591320)
+@@ -1,12 +1,11 @@
+ import re
+ import random
+-from nltk import tokenize
+ 
+ def getWeights(text,type):
+     arr = []
+     i=0
+     name = text["name"]
+-    sentences = re.split(r' [\.\?!][\'"\)\]] *', text["content"])
++    sentences = re.split('(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text["content"])
+     for stuff in sentences:
+         if type=='random':
+             weight= "%.2f" % random.random()

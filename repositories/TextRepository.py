@@ -1,4 +1,4 @@
-from model import TextConcrete
+from model.concrete import TextConcrete
 
 
 def insert_text(name, content):

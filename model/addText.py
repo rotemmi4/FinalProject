@@ -1,6 +1,5 @@
 import os
-import sqlite3
-from model import TextConcrete
+from model.concrete import TextConcrete
 
 
 def addtext(folderName):
