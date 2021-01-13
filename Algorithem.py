@@ -24,7 +24,6 @@ def getWeights(text,type):
         "sentences": arr,
         "name": name
     }
-    print(response)
     return response
 
 getWeights("hello. it's me",'random')

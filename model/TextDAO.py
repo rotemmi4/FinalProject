@@ -11,5 +11,7 @@ def delete_text(id):
 def get_text_by_id(id):
     return ("SELECT * FROM texts WHERE id={}".format(id))
 
+
+
 def get_texts():
     return ("SELECT * FROM texts")

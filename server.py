@@ -63,7 +63,6 @@ def get_text_by_id():
 @app.get("/texts/{id}/weights")
 def get_text_weights(id: int):
     text = TextRepository.get_text_by_id(id)
-    print(text)
     if (text):
          response = Algorithem.getWeights(text,'random')
     return response
