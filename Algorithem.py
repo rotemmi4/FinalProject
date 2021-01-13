@@ -1,12 +1,16 @@
 import re
 import random
+
+import nltk.data
 from nltk import tokenize
 
 def getWeights(text,type):
     arr = []
     i=0
     name = text["name"]
-    sentences = re.split(r' [\.\?!][\'"\)\]] *', text["content"])
+    #tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
+    #sentences = tokenizer.tokenize(text["content"])
+    sentences = re.split('(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text["content"])
     for stuff in sentences:
         if type=='random':
             weight= "%.2f" % random.random()
