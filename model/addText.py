@@ -12,4 +12,4 @@ def addtext(folderName):
 
 
 
-### addtext("C:/Users/meital/Desktop/פרוייקט/DUC/DUC_2002/texts/d061j")
+##addtext("C:/Users/meital/Desktop/פרוייקט/DUC/DUC_2002/texts/d063j")

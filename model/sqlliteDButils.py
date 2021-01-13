@@ -23,7 +23,7 @@ def execute_select(query):
 
 
 def execute_run(query,val):
-    conn = sqlite3.connect("C:/Users/meital/Desktop/FinalProject/db/docDB.db")
+    conn = sqlite3.connect(db_loc)
     cursor = conn.cursor()
     cursor.execute(query,val)
     conn.commit()
