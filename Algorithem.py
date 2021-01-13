@@ -1,22 +1,30 @@
 import re
 import random
+from nltk import tokenize
+
 def getWeights(text,type):
-    response = [{
-        "sentences": [
-            {"sentenceNum": 1,
-             "content": "",
-             "weight": 0},
-        ],
-        "name": ""
-    }]
+    arr = []
+    i=0
+    name=""
     sentences = re.split(r' [\.\?!][\'"\)\]] *', text)
     for stuff in sentences:
-        print(stuff)
+        if i==0:
+            name= stuff
         if type=='random':
             weight= random.random()
-            print(weight)
+            dic= {
+                "sentenceNum":i,
+                "content": stuff,
+                "weight":weight
+            }
+            arr.append(dic)
+            i+=1
 
-
+    response={
+        "sentences": arr,
+        "name": name
+    }
+    print(response)
     return response
 
-getWeights("hello? it's me",'random')
+getWeights("hello. it's me",'random')
