@@ -1,9 +1,6 @@
 import re
 import random
 
-import nltk.data
-from nltk import tokenize
-
 def getWeights(text,type):
     arr = []
     i=0
