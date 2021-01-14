@@ -35,6 +35,14 @@ class TextCreate(BaseModel):
     name: str
     content: str
 
+class TextVisu(BaseModel):
+    textName: str
+    textID: int
+    visualizationType: str
+    propName: str
+    propVal: str
+    propType: str
+
 class UserLogin(BaseModel):
     username: str
     password: str
@@ -55,8 +63,8 @@ def get_text_by_id():
     pass
 
 @app.post("/saveVisu")
-def save():
-    print("success!")
+def save(visu: TextVisu):
+    print (visu)
 
 
 @app.get("/texts/{id}/weights")
