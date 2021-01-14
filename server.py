@@ -49,11 +49,6 @@ def get_texts():
     return TextRepository.get_texts()
 
 
-@app.post("/texts")
-def create_text(text: TextCreate):
-    TextRepository.insert_text(text.name, text.content)
-    return {}
-
 
 @app.get("/texts/{id}")
 def get_text_by_id():
@@ -63,11 +58,13 @@ def get_text_by_id():
 @app.get("/texts/{id}/weights")
 def get_text_weights(id: int):
     text = TextRepository.get_text_by_id(id)
-    if (text[0]):
+    response= {}
+    if (text):
         response = RandomAlgorithem.getWeights(text[0],'random')
 #         response = AlgorithemFactory.get('random').getWeight(text[0])
     arrResponse =[]
-    arrResponse.append(response)
+    if(response):
+        arrResponse.append(response)
     return arrResponse
 
 
