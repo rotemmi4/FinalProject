@@ -35,7 +35,6 @@ class TextCreate(BaseModel):
     name: str
     content: str
 
-
 class UserLogin(BaseModel):
     username: str
     password: str
@@ -72,7 +71,7 @@ def get_text_weights(id: int):
     return arrResponse
 
 
-@app.get("/auth/login")
+@app.post("/auth/login")
 def login(user_data: UserLogin):
     if (user_data.username == admin_user and user_data.password == admin_password):
         payload = {'username': user_data.username, 'admin': True};
@@ -80,14 +79,13 @@ def login(user_data: UserLogin):
         return encoded_jwt
     pass
 
-@app.post("/text/{id}/weights")
-def save_visualization(text: TextCreate):
-
-    TextRepository.insert_text(text.name, text.content)
-    return {}
-
-
-
+@app.get("/private/user/get")
+def getLoginUser():
+    #token  = request header x-auth-token
+    #decoded_data = jwt.decode(token, secret)
+    #return decoded_data['username']
+    return {"username": "admin"}
+    pass
 
 uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")
