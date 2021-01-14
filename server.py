@@ -35,6 +35,7 @@ class TextCreate(BaseModel):
     name: str
     content: str
 
+
 class UserLogin(BaseModel):
     username: str
     password: str
@@ -78,6 +79,15 @@ def login(user_data: UserLogin):
         encoded_jwt = jwt.encode(payload, secret, algorithm="HS256")
         return encoded_jwt
     pass
+
+@app.post("/text/{id}/weights")
+def save_visualization(text: TextCreate):
+
+    TextRepository.insert_text(text.name, text.content)
+    return {}
+
+
+
 
 uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")
