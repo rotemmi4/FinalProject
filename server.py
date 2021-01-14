@@ -71,12 +71,20 @@ def get_text_weights(id: int):
     return arrResponse
 
 
-@app.get("/auth/login")
+@app.post("/auth/login")
 def login(user_data: UserLogin):
     if (user_data.username == admin_user and user_data.password == admin_password):
         payload = {'username': user_data.username, 'admin': True};
         encoded_jwt = jwt.encode(payload, secret, algorithm="HS256")
         return encoded_jwt
+    pass
+
+@app.get("/private/user/get")
+def getLoginUser():
+    #token  = request header x-auth-token
+    #decoded_data = jwt.decode(token, secret)
+    #return decoded_data['username']
+    return {"username": "admin"}
     pass
 
 uvicorn.run(app, host="localhost", port=5000)
@@ -88,4 +96,3 @@ uvicorn.run(app, host="localhost", port=5000)
 # def update_text():
 #     pass
 
-uvicorn.run(app, host="localhost", port=3000)
