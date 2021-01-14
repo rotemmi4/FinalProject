@@ -2,10 +2,10 @@ import uvicorn as uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-import Algorithem
 from repositories import TextRepository
 from pydantic import BaseModel
 import jwt
+from algorithems import RandomAlgorithem
 import json
 
 
@@ -64,7 +64,7 @@ def get_text_by_id():
 def get_text_weights(id: int):
     text = TextRepository.get_text_by_id(id)
     if (text[0]):
-        response = Algorithem.getWeights(text[0],'random')
+        response = RandomAlgorithem.getWeights(text[0],'random')
 #         response = AlgorithemFactory.get('random').getWeight(text[0])
     arrResponse =[]
     arrResponse.append(response)
