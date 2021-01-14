@@ -54,6 +54,10 @@ def get_texts():
 def get_text_by_id():
     pass
 
+@app.post("/saveVisu")
+def save():
+    print("success!")
+
 
 @app.get("/texts/{id}/weights")
 def get_text_weights(id: int):
