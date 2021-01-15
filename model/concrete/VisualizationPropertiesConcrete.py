@@ -8,7 +8,6 @@ def insert_visualization_properties(properties):
     VisualizationID = sqlliteDButils.execute_select(queryVisualizationID)
     id= VisualizationID[0]["id"]
     queryVisualizationProperties= VisualiztionPropertiesDAO.insert(properties.testName,properties.textID,id,properties.propName,properties.propVal,properties.propType)
-    print(queryVisualizationProperties)
     val=[properties.testName,properties.textID,id,properties.propName,properties.propVal,properties.propType]
     return sqlliteDButils.execute_run(queryVisualizationProperties,val)
 
