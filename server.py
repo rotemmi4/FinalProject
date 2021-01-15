@@ -2,7 +2,7 @@ import uvicorn as uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from repositories import TextRepository
+from repositories import TextRepository, VisualizationPropertiesRepository
 from pydantic import BaseModel
 import jwt
 from algorithems import RandomAlgorithem
@@ -36,7 +36,7 @@ class TextCreate(BaseModel):
     content: str
 
 class TextVisu(BaseModel):
-    textName: str
+    testName: str
     textID: int
     visualizationType: str
     propName: str
@@ -64,7 +64,8 @@ def get_text_by_id():
 
 @app.post("/saveVisu")
 def save(visu: TextVisu):
-    print (visu)
+    VisualizationPropertiesRepository.visualization_properties(visu)
+
 
 
 @app.get("/texts/{id}/weights")
