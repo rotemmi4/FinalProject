@@ -11,5 +11,8 @@ def delete(id):
 def get_visualiztion_by_id(id):
     return ("SELECT * FROM visualizations WHERE id={}".format(id))
 
+def get_visualiztion_by_type(type):
+    return ("SELECT id FROM visualiztions WHERE type = {}".format(type))
+
 def get_visualiztions():
     return ("SELECT * FROM visualizations")
