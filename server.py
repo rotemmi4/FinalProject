@@ -56,6 +56,11 @@ def read_root():
 def get_texts():
     return TextRepository.get_texts()
 
+@app.post("/uploadText")
+def add_text(text : TextCreate):
+    name = text.name
+    content = text.content
+    return TextRepository.insert_text(name, content)
 
 
 @app.get("/texts/{id}")
