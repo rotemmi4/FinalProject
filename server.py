@@ -35,6 +35,9 @@ class TextCreate(BaseModel):
     name: str
     content: str
 
+class TextDelete(BaseModel):
+    id: str
+
 class TextVisu(BaseModel):
     testName: str
     textID: int
@@ -62,7 +65,6 @@ def add_text(text : TextCreate):
     content = text.content
     return TextRepository.insert_text(name, content)
 
-
 @app.get("/texts/{id}")
 def get_text_by_id():
     pass
@@ -71,6 +73,11 @@ def get_text_by_id():
 def save(visu: TextVisu):
     VisualizationPropertiesRepository.visualization_properties(visu)
 
+@app.post("/deleteText")
+def delete_text(textId : TextDelete):
+    id1 = textId.id
+    #return TextRepository.delete_text(id1)
+    return id1
 
 
 @app.get("/texts/{id}/weights")

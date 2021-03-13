@@ -7,7 +7,7 @@ def update_text(id, name, content):
     return ("UPDATE texts set name=?, content=? where id=?)", [name, content, id])
 
 def delete_text(id):
-    return ("DELETE FROM texts where id=?)", [id])
+    return ("DELETE FROM texts where (id) value (?)")
 
 def get_text_by_id(id):
     return ("SELECT * FROM texts WHERE id={}".format(id))
