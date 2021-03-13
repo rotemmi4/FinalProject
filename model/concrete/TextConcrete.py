@@ -13,7 +13,8 @@ def update_text(id, name, content):
 
 def delete_text(id):
     query = TextDAO.delete_text(id)
-    return sqlliteDButils.execute_run(query)
+    val= (id,)
+    return sqlliteDButils.execute_run(query,val)
 
 def get_text_by_id(id):
     query = TextDAO.get_text_by_id(id)

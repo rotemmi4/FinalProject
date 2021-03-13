@@ -75,9 +75,8 @@ def save(visu: TextVisu):
 
 @app.post("/deleteText")
 def delete_text(textId : TextDelete):
-    id1 = textId.id
-    #return TextRepository.delete_text(id1)
-    return id1
+    return TextRepository.delete_text(textId.id)
+
 
 
 @app.get("/texts/{id}/weights")
