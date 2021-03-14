@@ -2,7 +2,7 @@ import uvicorn as uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from repositories import TextRepository, VisualizationPropertiesRepository
+from repositories import TextRepository, VisualizationPropertiesRepository, QuestionRepository
 from pydantic import BaseModel
 import jwt
 from algorithems import RandomAlgorithem
@@ -50,6 +50,11 @@ class UserLogin(BaseModel):
     username: str
     password: str
 
+class QuestionCreate(BaseModel):
+    number_id: str
+    text_id: str
+    content: str
+
 @app.get("/")
 def read_root():
     pass
@@ -76,6 +81,7 @@ def save(visu: TextVisu):
 @app.post("/deleteText")
 def delete_text(textId : TextDelete):
     return TextRepository.delete_text(textId.id)
+
 
 
 
@@ -108,7 +114,13 @@ def getLoginUser():
     return {"username": "admin"}
     pass
 
-#uvicorn.run(app, host="localhost", port=5000)
+
+@app.post("/addQuestion")
+def add_question(question : QuestionCreate):
+    return QuestionRepository.insert_question(question.number_id, question.text_id, question.content)
+
+
+uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")
 # def delete_text():
 #     pass
