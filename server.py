@@ -35,6 +35,9 @@ class TextCreate(BaseModel):
     name: str
     content: str
 
+class TextDelete(BaseModel):
+    id: str
+
 class TextVisu(BaseModel):
     testName: str
     textID: int
@@ -56,7 +59,11 @@ def read_root():
 def get_texts():
     return TextRepository.get_texts()
 
-
+@app.post("/uploadText")
+def add_text(text : TextCreate):
+    name = text.name
+    content = text.content
+    return TextRepository.insert_text(name, content)
 
 @app.get("/texts/{id}")
 def get_text_by_id():
@@ -65,6 +72,10 @@ def get_text_by_id():
 @app.post("/saveVisu")
 def save(visu: TextVisu):
     VisualizationPropertiesRepository.visualization_properties(visu)
+
+@app.post("/deleteText")
+def delete_text(textId : TextDelete):
+    return TextRepository.delete_text(textId.id)
 
 
 
@@ -106,4 +117,4 @@ def getLoginUser():
 # def update_text():
 #     pass
 
-uvicorn.run(app, host="localhost", port=3000)
+# uvicorn.run(app, host="localhost", port=3000)
