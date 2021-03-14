@@ -1,6 +1,6 @@
 
-def insert(number_id, text_id, content):
-    return ("INSERT INTO questions (number_id, text_id, content) values (?,?,?)", [number_id, text_id, content])
+def insert_question(number_id, text_id, content):
+    return ("INSERT INTO questions (number_id, text_id, content) values (?,?,?)")
 
 def update(number_id, text_id, content):
     return ("UPDATE questions set content=? where number_id=? AND text_id=?)", [content, number_id,text_id])

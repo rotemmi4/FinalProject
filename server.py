@@ -97,7 +97,7 @@ def getLoginUser():
     return {"username": "admin"}
     pass
 
-uvicorn.run(app, host="localhost", port=5000)
+#uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")
 # def delete_text():
 #     pass
