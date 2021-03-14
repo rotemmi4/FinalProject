@@ -82,7 +82,9 @@ def save(visu: TextVisu):
 def delete_text(textId : TextDelete):
     return TextRepository.delete_text(textId.id)
 
-
+@app.post("/addQuestion")
+def add_question(question : QuestionCreate):
+    return QuestionRepository.insert_question(question.number_id, question.text_id, question.content)
 
 
 @app.get("/texts/{id}/weights")
@@ -115,9 +117,7 @@ def getLoginUser():
     pass
 
 
-@app.post("/addQuestion")
-def add_question(question : QuestionCreate):
-    return QuestionRepository.insert_question(question.number_id, question.text_id, question.content)
+
 
 
 uvicorn.run(app, host="localhost", port=5000)
