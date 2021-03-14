@@ -117,4 +117,4 @@ uvicorn.run(app, host="localhost", port=5000)
 # def update_text():
 #     pass
 
-uvicorn.run(app, host="localhost", port=3000)
+# uvicorn.run(app, host="localhost", port=3000)
