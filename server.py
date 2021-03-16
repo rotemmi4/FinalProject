@@ -2,7 +2,7 @@ import uvicorn as uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from repositories import TextRepository, VisualizationPropertiesRepository, QuestionRepository
+from repositories import TextRepository, VisualizationPropertiesRepository, QuestionRepository, AnswerRepository
 from pydantic import BaseModel
 import jwt
 from algorithems import RandomAlgorithem
@@ -55,6 +55,12 @@ class QuestionCreate(BaseModel):
     text_id: str
     content: str
 
+class AnswersCreate(BaseModel):
+    option_id: int
+    question_id: str
+    is_correct: str
+    answer_content: str
+
 @app.get("/")
 def read_root():
     pass
@@ -86,6 +92,9 @@ def delete_text(textId : TextDelete):
 def add_question(question : QuestionCreate):
     return QuestionRepository.insert_question(question.number_id, question.text_id, question.content)
 
+@app.post("/addAnswers")
+def add_answers(answer : AnswersCreate):
+    return AnswerRepository.insert_answer(answer.option_id, answer.question_id, answer.is_correct, answer.answer_content)
 
 @app.get("/texts/{id}/weights")
 def get_text_weights(id: int):
