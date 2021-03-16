@@ -51,13 +51,14 @@ class UserLogin(BaseModel):
     password: str
 
 class QuestionCreate(BaseModel):
-    number_id: str
+    question_id: str
     text_id: str
-    content: str
+    question_content: str
 
 class AnswersCreate(BaseModel):
     option_id: int
     question_id: str
+    text_id: str
     is_correct: str
     answer_content: str
 
@@ -70,9 +71,6 @@ def read_root():
 def get_texts():
     return TextRepository.get_texts()
 
-@app.get("/questions")
-def get_questions():
-    return TextRepository.get_questions()
 
 @app.post("/uploadText")
 def add_text(text : TextCreate):
@@ -94,11 +92,15 @@ def delete_text(textId : TextDelete):
 
 @app.post("/addQuestion")
 def add_question(question : QuestionCreate):
-    return QuestionRepository.insert_question(question.number_id, question.text_id, question.content)
+    return QuestionRepository.insert_question(question.question_id, question.text_id, question.question_content)
 
 @app.post("/addAnswers")
 def add_answers(answer : AnswersCreate):
-    return AnswerRepository.insert_answer(answer.option_id, answer.question_id, answer.is_correct, answer.answer_content)
+    return AnswerRepository.insert_answer(answer.option_id, answer.question_id, answer.text_id, answer.is_correct, answer.answer_content)
+
+@app.post("/deleteQuestion")
+def delete_question(que_id : QuestionCreate):
+    return QuestionRepository.delete_question(que_id.question_id)
 
 @app.get("/texts/{id}/weights")
 def get_text_weights(id: int):
@@ -112,23 +114,31 @@ def get_text_weights(id: int):
         arrResponse.append(response)
     return arrResponse
 
+@app.get("/questions/{id}")
+def get_questions_by_id(id: int):
+    question = QuestionRepository.get_questions_by_id(id)
+
+    return question
 
 @app.post("/auth/login")
 def login(user_data: UserLogin):
     if (user_data.username == admin_user and user_data.password == admin_password):
         payload = {'username': user_data.username, 'admin': True};
         encoded_jwt = jwt.encode(payload, secret, algorithm="HS256")
-        return encoded_jwt
+        response = {
+                    'token': encoded_jwt,
+                     'user': { 'username': user_data.username }
+                     }
+
+        return response
     pass
 
 @app.get("/private/user/get")
-def getLoginUser():
-        #x_auth_token: Optional[str] = Header(None, convert_underscores=False)):
-    #token  = request header x-auth-token
-    #decoded_data = jwt.decode(token, secret)
-    #return decoded_data['username']
-   # print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" )
-    return {"username": "admin"}
+def getLoginUser(x_auth_token: Optional[str] = Header(None)):
+    decoded_data = jwt.decode(x_auth_token, secret, algorithms=["HS256"])
+    response = {'username': decoded_data['username']}
+
+    return response
     pass
 
 
