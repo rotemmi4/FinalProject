@@ -1,14 +1,14 @@
 import uvicorn as uvicorn
-from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from repositories import TextRepository, VisualizationPropertiesRepository, QuestionRepository, AnswerRepository
 from pydantic import BaseModel
 import jwt
 from algorithems import RandomAlgorithem
-import json
 
+from typing import Optional
 
+from fastapi import FastAPI, Header
 
 admin_user = 'admin'
 admin_password = 'admin'
@@ -70,6 +70,10 @@ def read_root():
 def get_texts():
     return TextRepository.get_texts()
 
+@app.get("/questions")
+def get_questions():
+    return TextRepository.get_questions()
+
 @app.post("/uploadText")
 def add_text(text : TextCreate):
     name = text.name
@@ -119,9 +123,11 @@ def login(user_data: UserLogin):
 
 @app.get("/private/user/get")
 def getLoginUser():
+        #x_auth_token: Optional[str] = Header(None, convert_underscores=False)):
     #token  = request header x-auth-token
     #decoded_data = jwt.decode(token, secret)
     #return decoded_data['username']
+   # print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" )
     return {"username": "admin"}
     pass
 
