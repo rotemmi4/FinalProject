@@ -9,6 +9,7 @@ def delete(question_id):
 
 
 def get_questions_by_id(text_id):
+    #cbdb
     #return ("SELECT * FROM questions WHERE [text_id] is (?)")
     return ("SELECT * FROM questions WHERE text_id=" + str(text_id))
 
