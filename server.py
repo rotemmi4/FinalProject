@@ -51,7 +51,6 @@ class UserLogin(BaseModel):
     password: str
 
 class QuestionCreate(BaseModel):
-    question_id: str
     text_id: str
     question_content: str
 
@@ -70,6 +69,11 @@ def read_root():
 @app.get("/texts")
 def get_texts():
     return TextRepository.get_texts()
+
+
+@app.get("/questionId")
+def get_question_id():
+    return QuestionRepository.get_max_question_id()
 
 
 @app.post("/uploadText")
@@ -92,7 +96,7 @@ def delete_text(textId : TextDelete):
 
 @app.post("/addQuestion")
 def add_question(question : QuestionCreate):
-    return QuestionRepository.insert_question(question.question_id, question.text_id, question.question_content)
+    return QuestionRepository.insert_question(question.text_id, question.question_content)
 
 @app.post("/addAnswers")
 def add_answers(answer : AnswersCreate):
