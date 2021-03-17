@@ -15,3 +15,6 @@ def get_questions_by_id(text_id):
 
 def get_max_question_id():
     return ("SELECT MAX(question_id) AS queId FROM questions ")
+
+def get_max_question_id():
+    return ("SELECT MAX(question_id) AS queId FROM questions ")

@@ -19,3 +19,7 @@ def delete_question(id):
 def get_max_question_id():
     query = questionsDAO.get_max_question_id()
     return sqlliteDButils.execute_select(query)
+
+def get_max_question_id():
+    query = questionsDAO.get_max_question_id()
+    return sqlliteDButils.execute_select(query)

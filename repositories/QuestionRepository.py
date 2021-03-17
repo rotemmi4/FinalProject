@@ -12,3 +12,6 @@ def delete_text(id):
 
 def get_max_question_id():
     return QuestionConcrete.get_max_question_id()
+
+def get_max_question_id():
+    return QuestionConcrete.get_max_question_id()
