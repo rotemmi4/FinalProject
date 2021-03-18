@@ -12,3 +12,11 @@ def delete_test(name):
     print(query)
     val = (name,)
     return sqlliteDButils.execute_run(query,val)
+
+def get_all_tests():
+    query = test_typeDAO.get_all_tests()
+    return sqlliteDButils.execute_select(query)
+
+def get_test_by_name(name):
+    query = test_typeDAO.get_test_by_name(name)
+    return sqlliteDButils.execute_select(query)

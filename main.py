@@ -8,7 +8,7 @@ def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 def insert_test():
-    TestTypeConcrete.insert_new_test("test","ChooseTextsAndVisualizations")
+    print(TestTypeConcrete.get_test_by_name("test"))
 
 
 # Press the green button in the gutter to run the script.zz
