@@ -1,6 +1,6 @@
 
 def insert(name,text_id, visualiztion_id):
-    return ("INSERT INTO tests values (?,?,?)", [name,text_id, visualiztion_id])
+    return ("INSERT INTO tests values (?,?,?)")
 
 def delete(name,text_id, visualiztion_id):
     return ("DELETE FROM tests where name=? AND text_id=? AND visualiztion_id=?)", [name,text_id, visualiztion_id])
@@ -17,6 +17,8 @@ def get_test_by_id(name,text_id, visualiztion_id):
             "tests.visualiztion_id = visualiztion_properties.visualiztion_id " +
             "WHERE tests.name=? AND tests.text_id=? AND tests.visualiztion_id=?".format(name,text_id, visualiztion_id))
     #return ("SELECT * FROM tests where name=? AND text_id=? AND visualiztion_id=?".format(name,text_id, visualiztion_id))
+def update_text(name, text_id, visualiztion_id):
+    return ("UPDATE tests set name=?, text_id=? , visualiztion_id=?)", [name, text_id, visualiztion_id])
 
 def get_tests():
     return ("SELECT tests.name, texts.id as text_id, texts.name as text_name, texts.content, visualization.id as v_id, visualization.type, " +
@@ -29,3 +31,7 @@ def get_tests():
             "tests.text_id = visualiztion_properties.text_id AND " +
             "tests.visualiztion_id = visualiztion_properties.visualiztion_id")
 
+def get_all_tests():
+    return (
+                "SELECT DISTINCT name " +
+                "FROM tests ")

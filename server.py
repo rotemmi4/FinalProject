@@ -2,7 +2,8 @@ import uvicorn as uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from repositories import TextRepository, VisualizationPropertiesRepository
+from model.concrete import TestConcrete
+from repositories import TextRepository, VisualizationPropertiesRepository, TestRepository
 from pydantic import BaseModel
 import jwt
 from algorithems import RandomAlgorithem
@@ -85,6 +86,16 @@ def get_text_weights(id: int):
         arrResponse.append(response)
     return arrResponse
 
+@app.get("/tests/allTests")
+def get_all_tests():
+
+
+    # response[0] = "Test0"
+    # response[1] = "Test1"
+    # response[2] = "Test2"
+    # print(response[0])
+    return TestRepository.get_tests()
+
 
 @app.post("/auth/login")
 def login(user_data: UserLogin):
@@ -102,6 +113,9 @@ def getLoginUser():
     return {"username": "admin"}
     pass
 
+
+
+
 uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")
 # def delete_text():
@@ -112,3 +126,4 @@ uvicorn.run(app, host="localhost", port=5000)
 #     pass
 
 uvicorn.run(app, host="localhost", port=3000)
+

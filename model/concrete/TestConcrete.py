@@ -3,17 +3,17 @@ from model.dao import TestDAO
 from model.db.converters import visualization_properties as converter
 
 
-def insert_text(name, content):
-    query = TestDAO.insert(name, content)
-    val = (name, content)
+def insert_test(name, text_id, visualiztion_id):
+    query = TestDAO.insert(name, text_id, visualiztion_id)
+    val = (name, text_id, visualiztion_id)
     return sqlliteDButils.execute_run(query, val)
 
-def update_text(id, name, content):
-    query = TestDAO.update(id, name, content)
+def update_test(name, text_id, visualiztion_id):
+    query = TestDAO.update(name, text_id, visualiztion_id)
     return sqlliteDButils.execute_run(query)
 
-def delete_text(id):
-    query = TestDAO.delete(id)
+def delete_test(name,text_id, visualiztion_id):
+    query = TestDAO.delete(name,text_id, visualiztion_id)
     return sqlliteDButils.execute_run(query)
 
 def get_test_by_id(id):
@@ -36,5 +36,5 @@ def get_test_by_id(id):
         return test
 
 def get_texts():
-    query = TestDAO.get_texts()
+    query = TestDAO.get_all_tests()
     return sqlliteDButils.execute_select(query)
