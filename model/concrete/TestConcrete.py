@@ -9,12 +9,19 @@ def insert_test(name, text_id, visualiztion_id):
     return sqlliteDButils.execute_run(query, val)
 
 def update_test(name, text_id, visualiztion_id):
-    query = TestDAO.update(name, text_id, visualiztion_id)
-    return sqlliteDButils.execute_run(query)
+    query = TestDAO.update_test(name, text_id, visualiztion_id)
+    val = (name,)
+    return sqlliteDButils.execute_run(query, val)
 
 def delete_test(name,text_id, visualiztion_id):
     query = TestDAO.delete(name,text_id, visualiztion_id)
-    return sqlliteDButils.execute_run(query)
+    val = (name,text_id, visualiztion_id)
+    return sqlliteDButils.execute_run(query,val)
+
+def delete_test_by_name(name):
+    query = TestDAO.delete_by_name(name)
+    val = (name,)
+    return sqlliteDButils.execute_run(query,val)
 
 def get_test_by_id(id):
     query = TestDAO.get_test_by_id(id)

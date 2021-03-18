@@ -1,5 +1,5 @@
 # This is a sample Python script.
-from model.concrete import TestTypeConcrete
+from model.concrete import TestConcrete
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
@@ -8,7 +8,7 @@ def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 def insert_test():
-    print(TestTypeConcrete.get_test_by_name("test"))
+    TestConcrete.insert_test("test",3,1)
 
 
 # Press the green button in the gutter to run the script.zz
