@@ -92,7 +92,7 @@ def get_all_tests():
 
 @app.get("/tests/deleteTest/{name}")
 def delete_test_by_name(name: str):
-    # TestTypeRepository.delete_test_by_name(name)
+    TestTypeRepository.delete_test_by_name(name)
     TestRepository.delete_test_by_name(name)
 
 
