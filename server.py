@@ -88,13 +88,12 @@ def get_text_weights(id: int):
 
 @app.get("/tests/getAllTests")
 def get_all_tests():
-
-
-    # response[0] = "Test0"
-    # response[1] = "Test1"
-    # response[2] = "Test2"
-    # print(response[0])
     return TestTypeRepository.get_all_tests()
+
+@app.get("/tests/deleteTest/{name}")
+def delete_test_by_name(name: str):
+    # TestTypeRepository.delete_test_by_name(name)
+    TestRepository.delete_test_by_name(name)
 
 
 @app.post("/auth/login")

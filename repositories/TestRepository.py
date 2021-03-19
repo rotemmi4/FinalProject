@@ -1,4 +1,4 @@
 from model.concrete import TestConcrete
 
-# def get_tests():
-#     return TestConcrete.get_tests()
+def delete_test_by_name(name):
+    TestConcrete.delete_test_by_name(name)
