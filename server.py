@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from model.concrete import TestConcrete
-from repositories import TextRepository, VisualizationPropertiesRepository, TestRepository
+from repositories import TextRepository, VisualizationPropertiesRepository, TestRepository, TestTypeRepository
 from pydantic import BaseModel
 import jwt
 from algorithems import RandomAlgorithem
@@ -86,7 +86,7 @@ def get_text_weights(id: int):
         arrResponse.append(response)
     return arrResponse
 
-@app.get("/tests/allTests")
+@app.get("/tests/getAllTests")
 def get_all_tests():
 
 
@@ -94,7 +94,7 @@ def get_all_tests():
     # response[1] = "Test1"
     # response[2] = "Test2"
     # print(response[0])
-    return TestRepository.get_tests()
+    return TestTypeRepository.get_all_tests()
 
 
 @app.post("/auth/login")
