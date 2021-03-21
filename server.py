@@ -86,6 +86,10 @@ def get_text_weights(id: int):
         arrResponse.append(response)
     return arrResponse
 
+@app.get("/getRandom")
+def get_random_texts():
+    return TextRepository.get_random_text()
+
 @app.get("/tests/getAllTests")
 def get_all_tests():
     return TestTypeRepository.get_all_tests()
