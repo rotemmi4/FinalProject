@@ -32,7 +32,6 @@ def get_random_text():
     for j in range(len(texts)):
         if(texts[j]["id"] in randomTexts):
             res.append(texts[j])
-    print(res)
     return res
 
         #print(texts[i]["id"])
