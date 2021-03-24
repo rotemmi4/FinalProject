@@ -13,3 +13,6 @@ def get_answer_by_id(test_id, text_id, visualiztion_id,property_name):
 
 def get_answers():
     return ("SELECT * FROM visualiztion_properties")
+
+def get_test_properties(testName):
+    return ("SELECT * FROM visualiztion_properties where test_id={} ".format("\""+testName+"\""))

@@ -12,6 +12,12 @@ def insert_visualization_properties(properties):
     return sqlliteDButils.execute_run(queryVisualizationProperties,val)
 
 
+def get_test_properties(testName):
+    query = VisualiztionPropertiesDAO.get_test_properties(testName)
+    print(query)
+    return sqlliteDButils.execute_select(query)
+
+
 def get_visualization_type(visualization):
     if (visualization == "Without Visualization"):
         return "WithoutVisualization"
