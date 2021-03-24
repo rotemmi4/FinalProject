@@ -99,6 +99,11 @@ def get_random_texts_and_visualization():
 def get_all_tests():
     return TestTypeRepository.get_all_tests()
 
+@app.get("/tests/testProperties/{testName}")
+def get_all_tests(testName : str):
+    return VisualizationPropertiesRepository.get_test_properties(testName)
+
+
 @app.get("/tests/deleteTest/{name}")
 def delete_test_by_name(name: str):
     TestTypeRepository.delete_test_by_name(name)
