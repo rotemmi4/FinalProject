@@ -88,7 +88,11 @@ def get_text_weights(id: int):
 
 @app.get("/getRandom")
 def get_random_texts():
-    return TextRepository.get_random_text()
+    return TextRepository.get_random_text(12)
+
+@app.get("/getRandomTextAndVisualization")
+def get_random_texts_and_visualization():
+    return TextRepository.get_random_text_and_visualizations(12)
 
 @app.get("/tests/getAllTests")
 def get_all_tests():
