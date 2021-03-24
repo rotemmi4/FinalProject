@@ -7,7 +7,7 @@ def insert_question(text_id, question_content):
 def get_questions_by_id(id):
     return QuestionConcrete.get_questions_by_id(id)
 
-def delete_text(id):
+def delete_question(id):
     return QuestionConcrete.delete_question(id)
 
 def get_max_question_id():

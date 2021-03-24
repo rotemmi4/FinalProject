@@ -61,6 +61,10 @@ class AnswersCreate(BaseModel):
     is_correct: str
     answer_content: str
 
+class QuestionDelete(BaseModel):
+    id: str
+
+
 @app.get("/")
 def read_root():
     pass
@@ -103,8 +107,8 @@ def add_answers(answer : AnswersCreate):
     return AnswerRepository.insert_answer(answer.option_id, answer.question_id, answer.text_id, answer.is_correct, answer.answer_content)
 
 @app.post("/deleteQuestion")
-def delete_question(que_id : QuestionCreate):
-    return QuestionRepository.delete_question(que_id.question_id)
+def delete_question(que_id : QuestionDelete):
+    return QuestionRepository.delete_question(que_id.id)
 
 @app.get("/texts/{id}/weights")
 def get_text_weights(id: int):
