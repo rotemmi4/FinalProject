@@ -14,7 +14,6 @@ def insert_visualization_properties(properties):
 
 def get_test_properties(testName):
     query = VisualiztionPropertiesDAO.get_test_properties(testName)
-    print(query)
     return sqlliteDButils.execute_select(query)
 
 
