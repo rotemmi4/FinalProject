@@ -53,6 +53,14 @@ class UserLogin(BaseModel):
 class QuestionCreate(BaseModel):
     text_id: str
     question_content: str
+    answer1_isCorrect: str
+    answer1_content: str
+    answer2_isCorrect: str
+    answer2_content: str
+    answer3_isCorrect: str
+    answer3_content: str
+    answer4_isCorrect: str
+    answer4_content: str
 
 class AnswersCreate(BaseModel):
     option_id: int
@@ -100,11 +108,21 @@ def delete_text(textId : TextDelete):
 
 @app.post("/addQuestion")
 def add_question(question : QuestionCreate):
-    return QuestionRepository.insert_question(question.text_id, question.question_content)
+    QuestionRepository.insert_question(question.text_id, question.question_content)
+    queId= QuestionRepository.get_max_question_id()
+    AnswerRepository.insert_answer(1, queId[0]['queId'], question.text_id, question.answer1_isCorrect,
+                                   question.answer1_content)
+    AnswerRepository.insert_answer(2, queId[0]['queId'], question.text_id, question.answer2_isCorrect,
+                                   question.answer2_content)
+    AnswerRepository.insert_answer(3, queId[0]['queId'], question.text_id, question.answer3_isCorrect,
+                                   question.answer3_content)
+    AnswerRepository.insert_answer(4, queId[0]['queId'], question.text_id, question.answer4_isCorrect,
+                                   question.answer4_content)
+    pass
 
-@app.post("/addAnswers")
-def add_answers(answer : AnswersCreate):
-    return AnswerRepository.insert_answer(answer.option_id, answer.question_id, answer.text_id, answer.is_correct, answer.answer_content)
+# @app.post("/addAnswers")
+# def add_answers(answer : AnswersCreate):
+#     return AnswerRepository.insert_answer(answer.option_id, answer.question_id, answer.text_id, answer.is_correct, answer.answer_content)
 
 @app.post("/deleteQuestion")
 def delete_question(que_id : QuestionDelete):
@@ -125,7 +143,7 @@ def get_text_weights(id: int):
 @app.get("/questions/{id}")
 def get_questions_by_id(id: int):
     question = QuestionRepository.get_questions_by_id(id)
-
+    print(question)
     return question
 
 @app.post("/auth/login")
