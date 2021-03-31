@@ -29,9 +29,11 @@ def get_random_text(numOfText):
             if(num not in randomTexts):
                 randomTexts.append(num)
                 found = True
-    for j in range(len(texts)):
-        if(texts[j]["id"] in randomTexts):
-            res.append(texts[j])
+    for j in randomTexts:
+        res.append(TextConcrete.get_text_by_id(j)[0])
+    # for j in range(len(texts)):
+    #     if(texts[j]["id"] in randomTexts):
+    #         res.append(texts[j])
     return res
 
 def get_random_visualization(numOfVisualizations):
