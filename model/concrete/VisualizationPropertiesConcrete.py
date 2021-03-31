@@ -16,6 +16,12 @@ def get_test_properties(testName):
     query = VisualiztionPropertiesDAO.get_test_properties(testName)
     return sqlliteDButils.execute_select(query)
 
+def delete_test_by_name(testName):
+    query = VisualiztionPropertiesDAO.delete_test_by_name(testName)
+    print(query)
+    val = (testName,)
+    return sqlliteDButils.execute_run(query,val)
+
 
 def get_visualization_type(visualization):
     if (visualization == "Without Visualization"):

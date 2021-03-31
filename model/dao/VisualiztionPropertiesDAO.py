@@ -16,3 +16,7 @@ def get_answers():
 
 def get_test_properties(testName):
     return ("SELECT * FROM visualiztion_properties where test_id={} ".format("\""+testName+"\""))
+
+
+def delete_test_by_name(test_name):
+    return ("DELETE FROM visualiztion_properties where test_id=? ")
