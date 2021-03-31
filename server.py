@@ -70,7 +70,7 @@ def get_text_by_id():
 
 @app.post("/saveVisu")
 def save(visu: TextVisu):
-    VisualizationPropertiesRepository.visualization_properties(visu)
+    VisualizationPropertiesRepository.insert_visualization_properties(visu)
 
 
 
@@ -95,6 +95,7 @@ def get_random_texts():
 def get_random_texts_and_visualization():
     return TextRepository.get_random_text_and_visualizations(12)
 
+
 @app.get("/tests/getAllTests")
 def get_all_tests():
     return TestTypeRepository.get_all_tests()
@@ -104,10 +105,11 @@ def get_all_tests(testName : str):
     return VisualizationPropertiesRepository.get_test_properties(testName)
 
 
-@app.get("/tests/deleteTest/{name}")
+@app.post("/tests/deleteTest/{name}")
 def delete_test_by_name(name: str):
     TestTypeRepository.delete_test_by_name(name)
     TestRepository.delete_test_by_name(name)
+    VisualizationPropertiesRepository.delete_test_properties(name)
 
 
 @app.post("/auth/login")

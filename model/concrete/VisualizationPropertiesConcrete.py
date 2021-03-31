@@ -18,7 +18,6 @@ def get_test_properties(testName):
 
 def delete_test_by_name(testName):
     query = VisualiztionPropertiesDAO.delete_test_by_name(testName)
-    print(query)
     val = (testName,)
     return sqlliteDButils.execute_run(query,val)
 
