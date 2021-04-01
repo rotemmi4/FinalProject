@@ -4,7 +4,7 @@ def insert_question(text_id, question_content):
 
 
 def delete_question(question_id):
-    return ("DELETE FROM questions WHERE [question_id] in (?)")
+    return ("DELETE FROM questions WHERE [question_id] = (?)")
     #return ("DELETE FROM questions where number_id=? AND text_id=?)", [number_id, text_id])
 
 

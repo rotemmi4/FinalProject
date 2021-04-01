@@ -24,6 +24,7 @@ def execute_select(query):
 
 def execute_run(query, val):
     conn = sqlite3.connect(db_loc)
+    conn.execute("PRAGMA foreign_keys = 1")
     cursor = conn.cursor()
     cursor.execute(query, val)
     conn.commit()
