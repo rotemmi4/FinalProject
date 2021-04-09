@@ -1,5 +1,5 @@
 # This is a sample Python script.
-from repositories import TextRepository, VisualizationPropertiesRepository
+from repositories import TextRepository, VisualizationPropertiesRepository, TestTypeRepository
 from model.concrete import TestTypeConcrete, VisualizationPropertiesConcrete , TestConcrete
 
 
@@ -16,7 +16,8 @@ def print_hi(name):
 # Press the green button in the gutter to run the script.zz
 if __name__ == '__main__':
     print_hi('PyCharm')
-    # TestTypeConcrete.delete_test("test")
+    # VisualizationPropertiesRepository.delete_test_properties("Test")
+    TestTypeRepository.delete_test_by_name("Test")
 
 
 

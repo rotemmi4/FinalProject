@@ -9,6 +9,7 @@ def insert_new_test (test_name, type):
 
 def delete_test(name):
     query = test_typeDAO.delete(name)
+    print(query)
     val = (name,)
     return sqlliteDButils.execute_run(query,val)
 

@@ -38,6 +38,7 @@ class TextCreate(BaseModel):
 
 class TextVisu(BaseModel):
     testName: str
+    testType: str
     textID: int
     visualizationType: str
     propName: str
@@ -71,6 +72,7 @@ def get_text_by_id():
 @app.post("/saveVisu")
 def save(visu: TextVisu):
     VisualizationPropertiesRepository.insert_visualization_properties(visu)
+    TestTypeRepository.save_new_test("\""+visu.testName+"\"","\""+visu.testType+"\"")
 
 
 
