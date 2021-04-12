@@ -36,15 +36,19 @@ class TextCreate(BaseModel):
     name: str
     content: str
 
+class TextDelete(BaseModel):
+    id: str
+
 class TextVisu(BaseModel):
     testName: str
-    testType: str
     textID: int
     visualizationType: str
     propName: str
     propVal: str
     propType: str
-
+class TestType(BaseModel):
+    testName:str
+    testType: str
 class UserLogin(BaseModel):
     username: str
     password: str
@@ -72,7 +76,15 @@ def get_text_by_id():
 @app.post("/saveVisu")
 def save(visu: TextVisu):
     VisualizationPropertiesRepository.insert_visualization_properties(visu)
-    TestTypeRepository.save_new_test("\""+visu.testName+"\"","\""+visu.testType+"\"")
+
+
+@app.post("/saveTest")
+def saveTest(testType: TestType):
+    TestTypeRepository.save_new_test(testType.testName, "\"" + testType.testType + "\"")
+
+@app.post("/deleteText")
+def delete_text(textId : TextDelete):
+    return TextRepository.delete_text(textId.id)
 
 
 
@@ -130,9 +142,6 @@ def getLoginUser():
     return {"username": "admin"}
     pass
 
-
-
-
 uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")
 # def delete_text():
@@ -142,5 +151,4 @@ uvicorn.run(app, host="localhost", port=5000)
 # def update_text():
 #     pass
 
-uvicorn.run(app, host="localhost", port=3000)
-
+# uvicorn.run(app, host="localhost", port=3000)

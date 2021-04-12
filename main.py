@@ -16,8 +16,8 @@ def print_hi(name):
 # Press the green button in the gutter to run the script.zz
 if __name__ == '__main__':
     print_hi('PyCharm')
-    # VisualizationPropertiesRepository.delete_test_properties("Test")
-    TestTypeRepository.delete_test_by_name("Test")
+    VisualizationPropertiesRepository.delete_test_properties("yasmin")
+    TestTypeRepository.delete_test_by_name("yasmin")
 
 
 
