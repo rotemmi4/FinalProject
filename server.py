@@ -119,7 +119,7 @@ def add_question(question : QuestionCreate):
     AnswerRepository.insert_answer(4, queId[0]['queId'], question.text_id, question.answer4_isCorrect,
                                    question.answer4_content)
     pass
-
+#ddd
 # @app.post("/addAnswers")
 # def add_answers(answer : AnswersCreate):
 #     return AnswerRepository.insert_answer(answer.option_id, answer.question_id, answer.text_id, answer.is_correct, answer.answer_content)
