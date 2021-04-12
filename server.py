@@ -1,7 +1,8 @@
 import uvicorn as uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 
-from repositories import TextRepository, VisualizationPropertiesRepository, QuestionRepository, AnswerRepository
+from repositories import TextRepository, VisualizationPropertiesRepository, QuestionRepository, AnswerRepository, \
+    TestTypeRepository
 from pydantic import BaseModel
 import jwt
 from algorithems import RandomAlgorithem
@@ -45,7 +46,9 @@ class TextVisu(BaseModel):
     propName: str
     propVal: str
     propType: str
-
+class TestType(BaseModel):
+    testName:str
+    testType: str
 class UserLogin(BaseModel):
     username: str
     password: str
@@ -100,7 +103,18 @@ def get_text_by_id():
 
 @app.post("/saveVisu")
 def save(visu: TextVisu):
-    VisualizationPropertiesRepository.visualization_properties(visu)
+    VisualizationPropertiesRepository.insert_visualization_properties(visu)
+
+
+@app.post("/saveTest")
+def saveTest(testType: TestType):
+    TestTypeRepository.save_new_test(testType.testName, "\"" + testType.testType + "\"")
+
+
+@app.post("/deleteText")
+def delete_text(textId: TextDelete):
+    return TextRepository.delete_text(textId.id)
+
 
 @app.post("/deleteText")
 def delete_text(textId : TextDelete):
@@ -139,6 +153,13 @@ def get_text_weights(id: int):
     if(response):
         arrResponse.append(response)
     return arrResponse
+
+@app.get("/getRandom")
+def get_random_texts():
+    return TextRepository.get_random_text(12)
+@app.get("/getRandomTextAndVisualization")
+def get_random_texts_and_visualization():
+    return TextRepository.get_random_text_and_visualizations(12)
 
 @app.get("/questions/{id}")
 def get_questions_by_id(id: int):

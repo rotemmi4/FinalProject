@@ -22,7 +22,7 @@ def get_random_text(numOfText):
     texts=TextConcrete.get_texts()
     randomTexts = []
     res = []
-    for i in range(numOfText):
+    for i in range(1,numOfText):
         found = False
         while(found==False):
             num=random.randint(1, len(texts))
