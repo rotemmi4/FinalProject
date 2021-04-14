@@ -19,17 +19,19 @@ def get_texts():
     return TextConcrete.get_texts()
 
 def get_random_text(numOfText):
-    texts=TextConcrete.get_texts()
+    texts=get_all_id_texts()
     randomTexts = []
     res = []
-    for i in range(1,numOfText):
+    for i in range(0,numOfText):
         found = False
         while(found==False):
             num=random.randint(1, len(texts))
-            if(num not in randomTexts):
+            print()
+            if((num not in randomTexts) and (num in texts)):
                 randomTexts.append(num)
                 found = True
     for j in randomTexts:
+        print (j)
         res.append(TextConcrete.get_text_by_id(j)[0])
     # for j in range(len(texts)):
     #     if(texts[j]["id"] in randomTexts):
@@ -74,6 +76,11 @@ def get_random_text_and_visualizations(numberOfRandom):
 
     return res
 
-
+def get_all_id_texts():
+    ans =[]
+    texts=TextConcrete.get_all_id_texts()
+    for text in texts:
+        ans.append(text["id"])
+    return ans
 
 

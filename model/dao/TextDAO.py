@@ -16,3 +16,7 @@ def get_text_by_id(id):
 
 def get_texts():
     return ("SELECT * FROM texts")
+
+
+def get_all_id_texts():
+    return ("SELECT id FROM texts")

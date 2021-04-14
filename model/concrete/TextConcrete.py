@@ -23,3 +23,8 @@ def get_text_by_id(id):
 def get_texts():
     query = TextDAO.get_texts()
     return sqlliteDButils.execute_select(query)
+
+
+def get_all_id_texts():
+    query = TextDAO.get_all_id_texts()
+    return sqlliteDButils.execute_select(query)
