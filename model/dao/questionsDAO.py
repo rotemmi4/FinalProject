@@ -13,3 +13,8 @@ def get_question_by_id(number_id, text_id):
 
 def get_questions():
     return ("SELECT * FROM questions")
+
+def get_questions_by_text_id(text_id):
+    return ("SELECT question_id, question_content FROM questions WHERE text_id=" + str(text_id))
+
+

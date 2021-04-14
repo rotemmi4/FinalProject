@@ -9,7 +9,7 @@ def delete(id):
     return ("DELETE FROM visualizations where id=?)", [id])
 
 def get_visualiztion_by_id(id):
-    return ("SELECT * FROM visualizations WHERE id={}".format(id))
+    return ("SELECT * FROM visualiztions WHERE id=" + str(id))
 
 def get_visualiztion_by_type(type):
     return ("SELECT id FROM visualiztions WHERE type = {}".format(type))

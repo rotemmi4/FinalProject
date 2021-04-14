@@ -25,3 +25,9 @@ def get_visualization_type(visualization):
         return "GradualFont"
     elif (visualization == "Summary Only"):
         return "SummaryOnly"
+
+def get_visualiztion_by_id(id):
+    query = VisualiztionDAO.get_visualiztion_by_id(id)
+    return sqlliteDButils.execute_select(query)
+
+
