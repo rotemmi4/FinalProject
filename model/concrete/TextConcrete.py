@@ -1,6 +1,7 @@
 from model.db import sqlliteDButils
 from model.dao import TextDAO
 
+# Building a query - Step 2
 
 def insert_text(name, content):
     query = TextDAO.insert_text(name, content)

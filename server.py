@@ -1,9 +1,13 @@
+import random
+
 import uvicorn as uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 
 from repositories import TextRepository, VisualizationPropertiesRepository, QuestionRepository, AnswerRepository, \
     TestTypeRepository
 from pydantic import BaseModel
+from repositories import TextRepository, VisualizationPropertiesRepository, StudentRepository
+from pydantic import BaseModel, Field
 import jwt
 from algorithems import RandomAlgorithem
 
@@ -200,6 +204,7 @@ uvicorn.run(app, host="localhost", port=5000)
 # @app.put("/texts/{id}")
 # def update_text():
 #     pass
+# pass !@
 #jhjhghgh
 
 # uvicorn.run(app, host="localhost", port=3000)
