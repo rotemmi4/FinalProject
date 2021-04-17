@@ -80,13 +80,6 @@ class QuestionDelete(BaseModel):
     id: str
 
 
-class StudentInfo(BaseModel):
-    studentID: int
-    studentAge: int
-    studentGender: str
-
-
-
 @app.get("/")
 def read_root():
     pass
@@ -203,104 +196,6 @@ def getLoginUser(x_auth_token: Optional[str] = Header(None)):
 
 
 
-# Roman
-@app.post("/student/set_info")
-def set_info_student(student_info: StudentInfo):
-    studentID = student_info.studentID
-    studentAge = student_info.studentAge
-    studentGender = student_info.studentGender
-    return StudentRepository.insert_info(studentID, studentAge, studentGender)
-    # pass
-
-@app.get("/student/get_test_id")
-def get_test_id():
-    all_test = StudentRepository.get_test_ids()
-    d = {}
-    for dict in all_test:
-        for test_name in dict.values():
-            d[test_name] = 0
-    test_id = random.choice(list(d))
-    return test_id
-
-
-@app.get("/student/get_questions/{text_id}")
-def get_questions_by_text_id(text_id: int):
-    all_questions = StudentRepository.get_questions_by_text_id(text_id)
-    for question in all_questions:
-        question_id = question["question_id"]
-        # question_content = question["question_content"]
-        all_answers = StudentRepository.get_all_answers_by_question_id(question_id)
-        # add the list of answers to the question
-        question["answer_options"] = all_answers
-
-    return all_questions
-
-
-@app.post("/student/set_question_results")
-def get_questions_by_text_id(results: list):
-    return StudentRepository.insert_question_results(results)
-
-
-@app.get("/text/get_visualization/{text_id}")
-def get_visualiztion_by_id(text_id: int):
-    visualization = VisualizationPropertiesRepository.get_visualiztion_by_id(text_id)
-    if len(visualization) > 0:
-        if (visualization[0]["type"] == "WithoutVisualization"):
-            return "Without Visualization"
-        elif (visualization[0]["type"] == "Highlight"):
-            return "Highlight"
-        elif (visualization[0]["type"] == "GradualHighlight"):
-            return "Gradual Highlight"
-        elif (visualization[0]["type"] == "IncreasedFont"):
-            return "Increased Font"
-        elif (visualization[0]["type"] == "GradualFont"):
-            return "Gradual Font"
-        elif (visualization[0]["type"] == "SummaryOnly"):
-            return "Summary Only"
-    return "Without Visualization"
-
-
-@app.get("/student/get_texts_by_testid/{test_id}")
-def get_texts_by_test_id(test_id: str):
-    text_ids = StudentRepository.get_texts_by_test_id(test_id)
-    return text_ids
-
-@app.get("/student/get_type_by_text_id/{text_id}")
-def get_texts_by_test_id(text_id: int):
-    text_type_id = StudentRepository.get_type_by_text_id(text_id)
-    text_type_id = text_type_id[0]["visualiztion_id"]
-    visualization = VisualizationPropertiesRepository.get_visualiztion_by_id(text_type_id)
-    if len(visualization) > 0:
-        if (visualization[0]["type"] == "WithoutVisualization"):
-            return "Without Visualization"
-        elif (visualization[0]["type"] == "Highlight"):
-            return "Highlight"
-        elif (visualization[0]["type"] == "GradualHighlight"):
-            return "Gradual Highlight"
-        elif (visualization[0]["type"] == "IncreasedFont"):
-            return "Increased Font"
-        elif (visualization[0]["type"] == "GradualFont"):
-            return "Gradual Font"
-        elif (visualization[0]["type"] == "SummaryOnly"):
-            return "Summary Only"
-    return "Without Visualization"
-
-
-@app.get("/texts/{text_id}/all_info")
-def get_text_total_info(text_id: int):
-    text = TextRepository.get_text_by_id(text_id)
-    response = {}
-    if text:
-        response = RandomAlgorithem.getWeights(text[0], 'random')
-#         response = AlgorithemFactory.get('random').getWeight(text[0])
-    arrResponse = []
-    if response:
-        arrResponse.append(response)
-    text_type = get_texts_by_test_id(text_id)
-    arrResponse[0]["type"] = text_type
-    # print("here?")
-    return arrResponse
-
 uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")
 # def delete_text():
@@ -309,5 +204,6 @@ uvicorn.run(app, host="localhost", port=5000)
 # @app.put("/texts/{id}")
 # def update_text():
 #     pass
+# pass !@
 
 # uvicorn.run(app, host="localhost", port=3000)
