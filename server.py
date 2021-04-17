@@ -200,7 +200,20 @@ def get_texts_by_test_id(text_id: int):
     return "Without Visualization"
 
 
-
+@app.get("/texts/{text_id}/all_info")
+def get_text_total_info(text_id: int):
+    text = TextRepository.get_text_by_id(text_id)
+    response = {}
+    if text:
+        response = RandomAlgorithem.getWeights(text[0], 'random')
+#         response = AlgorithemFactory.get('random').getWeight(text[0])
+    arrResponse = []
+    if response:
+        arrResponse.append(response)
+    text_type = get_texts_by_test_id(text_id)
+    arrResponse[0]["type"] = text_type
+    # print("here?")
+    return arrResponse
 
 uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")
