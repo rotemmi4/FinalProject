@@ -141,7 +141,7 @@ def get_test_id():
 def get_questions_by_text_id(text_id: int):
     all_questions = StudentRepository.get_questions_by_text_id(text_id)
     for question in all_questions:
-        question_id = question["number_id"]
+        question_id = question["question_id"]
         # question_content = question["question_content"]
         all_answers = StudentRepository.get_all_answers_by_question_id(question_id)
         # add the list of answers to the question
