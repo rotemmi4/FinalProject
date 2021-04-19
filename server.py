@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from repositories import TextRepository, VisualizationPropertiesRepository, QuestionRepository, AnswerRepository, \
     TestTypeRepository
 from pydantic import BaseModel
-from repositories import TextRepository, VisualizationPropertiesRepository, StudentRepository
+from repositories import TextRepository, VisualizationPropertiesRepository, StudentRepository, StudentAnswersRepository
 from pydantic import BaseModel, Field
 import jwt
 from algorithems import RandomAlgorithem
@@ -297,7 +297,9 @@ def get_text_total_info(text_id: int):
     # print("here?")
     return arrResponse
 
-
+@app.get("/result/{test_name}")
+def get_answer_by_test_name(test_name: str):
+    return StudentAnswersRepository.get_answer_by_test_name(test_name)
 
 
 uvicorn.run(app, host="localhost", port=5000)
