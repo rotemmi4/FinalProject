@@ -118,6 +118,9 @@ def save(visu: TextVisu):
 def saveTest(testType: TestType):
     TestTypeRepository.save_new_test(testType.testName, "\"" + testType.testType + "\"")
 
+@app.get("/tests/getAllTests")
+def get_all_tests():
+    return TestTypeRepository.get_all_tests()
 
 @app.post("/deleteText")
 def delete_text(textId: TextDelete):
