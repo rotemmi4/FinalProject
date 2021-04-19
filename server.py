@@ -299,7 +299,8 @@ def get_text_total_info(text_id: int):
 
 @app.get("/result/{test_name}")
 def get_answer_by_test_name(test_name: str):
-    return StudentAnswersRepository.get_answer_by_test_name(test_name)
+    if(test_name != None ):
+        return StudentAnswersRepository.get_answer_by_test_name("\'"+test_name+"\'")
 
 
 uvicorn.run(app, host="localhost", port=5000)
