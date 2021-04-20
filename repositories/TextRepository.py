@@ -26,12 +26,10 @@ def get_random_text(numOfText):
         found = False
         while(found==False):
             num=random.randint(1, len(texts))
-            print()
             if((num not in randomTexts) and (num in texts)):
                 randomTexts.append(num)
                 found = True
     for j in randomTexts:
-        print (j)
         res.append(TextConcrete.get_text_by_id(j)[0])
     # for j in range(len(texts)):
     #     if(texts[j]["id"] in randomTexts):
@@ -72,6 +70,23 @@ def get_random_text_and_visualizations(numberOfRandom):
         dic["id"]=texts[j]["id"]
         dic["name"]=texts[j]["name"]
         dic["visualization"]=visualization[j]
+        if( visualization[j] == "Summary Only" or visualization[j] == "Highlight" or visualization[j] == "Increased Font"  ):
+            dic["threshold"] = float("{:.2f}".format(random.uniform(0.01, 1.0)))
+        else:
+            dic["threshold"] = 0.5
+        if (visualization[j] == "Gradual Highlight" or visualization[j] == "Highlight"):
+            dic["propertyName"] = "color"
+            dic["propertyValue"] = "251,158,0"
+            dic["propertyType"] = "str"
+        elif (visualization[j] == "Gradual Font" or visualization[j] == "Increased Font"):
+            dic["propertyName"] = "font"
+            dic["propertyValue"] = "18"
+            dic["propertyType"] = "int"
+        else:
+            dic["propertyName"] = "none"
+            dic["propertyValue"] = "none"
+            dic["propertyType"] = "none"
+
         res.append(dic)
 
     return res
