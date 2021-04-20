@@ -132,6 +132,11 @@ def delete_text(textId: TextDelete):
 def delete_text(textId : TextDelete):
     return TextRepository.delete_text(textId.id)
 
+@app.post("/tests/deleteTest/{name}")
+def delete_test_by_name(name: str):
+    TestTypeRepository.delete_test_by_name(name)
+    VisualizationPropertiesRepository.delete_test_properties(name)
+
 @app.post("/addQuestion")
 def add_question(question : QuestionCreate):
     QuestionRepository.insert_question(question.text_id, question.question_content)
