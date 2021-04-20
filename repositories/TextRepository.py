@@ -76,8 +76,9 @@ def get_random_text_and_visualizations(numberOfRandom):
         else:
             dic["threshold"] = 0.5
         if (visualization[j] == "Gradual Highlight" or visualization[j] == "Highlight"):
+            num = random.randint(0, len(colorDictionary)-1)
             dic["propertyName"] = "color"
-            dic["propertyValue"] = "251,158,0"
+            dic["propertyValue"] = colorDictionary[num]
             dic["propertyType"] = "str"
         elif (visualization[j] == "Gradual Font" or visualization[j] == "Increased Font"):
             dic["propertyName"] = "font"
