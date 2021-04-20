@@ -1,5 +1,6 @@
 
 def insert(test_id, text_id, visualization_id,property_name,property_value, property_type,threshold):
+
     return ("INSERT INTO visualiztion_properties values (?,?,?,?,?,?,?)".format(test_id, text_id, visualization_id,property_name,property_value, property_type,threshold))
 
 def update(test_id, text_id, visualiztion_id,property_name,property_value, property_type):
