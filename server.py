@@ -135,11 +135,10 @@ def delete_text(textId : TextDelete):
 @app.post("/tests/deleteTest/{name}")
 def delete_test_by_name(name: str):
     TestTypeRepository.delete_test_by_name(name)
-    #VisualizationPropertiesRepository.delete_test_properties(name)
 
 @app.post("/tests/deleteTestProperties/{name}")
 def delete_test_by_name(name: str):
-    #TestTypeRepository.delete_test_by_name(name)
+
     VisualizationPropertiesRepository.delete_test_properties(name)
 
 
