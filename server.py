@@ -94,6 +94,10 @@ class RankCreate(BaseModel):
     summaryOnly: int
     rank_order: str
 
+class RankUpdate(BaseModel):
+    student_id: str
+    rank_order: str
+
 @app.get("/")
 def read_root():
     pass
@@ -325,6 +329,14 @@ def add_rank(rank_info: RankCreate):
     summaryOnly = rank_info.summaryOnly
     rank_order = rank_info.rank_order
     return RankRepository.insert_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont,gradualFont, summaryOnly,rank_order)
+
+@app.post("/updateRankOrder")
+def update_rank(rank_info: RankUpdate):
+    student_id= rank_info.student_id
+    rank_order = rank_info.rank_order
+    return RankRepository.update_rank(student_id ,rank_order)
+
+
 
 uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")
