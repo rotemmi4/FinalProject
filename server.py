@@ -4,7 +4,7 @@ import uvicorn as uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 
 from repositories import TextRepository, VisualizationPropertiesRepository, QuestionRepository, AnswerRepository, \
-    TestTypeRepository
+    TestTypeRepository, RankRepository
 from pydantic import BaseModel
 from repositories import TextRepository, VisualizationPropertiesRepository, StudentRepository, StudentAnswersRepository
 from pydantic import BaseModel, Field
@@ -84,6 +84,16 @@ class StudentInfo(BaseModel):
     studentAge: int
     studentGender: str
 
+class RankCreate(BaseModel):
+    student_id: int
+    withoutVisualization: int
+    gradualHighlight: int
+    highlight: int
+    increasedFont: int
+    gradualFont: int
+    summaryOnly: int
+    rank_order: str
+
 @app.get("/")
 def read_root():
     pass
@@ -117,6 +127,7 @@ def save(visu: TextVisu):
 @app.post("/saveTest")
 def saveTest(testType: TestType):
     TestTypeRepository.save_new_test(testType.testName, "\"" + testType.testType + "\"")
+
 
 @app.get("/tests/getAllTests")
 def get_all_tests():
@@ -302,6 +313,18 @@ def get_answer_by_test_name(test_name: str):
     if(test_name != None ):
         return StudentAnswersRepository.get_answer_by_test_name("\'"+test_name+"\'")
 
+
+@app.post("/rank")
+def add_rank(rank_info: RankCreate):
+    student_id = rank_info.student_id
+    withoutVisualization = rank_info.withoutVisualization
+    gradualHighlight = rank_info.gradualHighlight
+    highlight = rank_info.highlight
+    increasedFont = rank_info.increasedFont
+    gradualFont = rank_info.gradualFont
+    summaryOnly = rank_info.summaryOnly
+    rank_order = rank_info.rank_order
+    return RankRepository.insert_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont,gradualFont, summaryOnly,rank_order)
 
 uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")
