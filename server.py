@@ -308,6 +308,9 @@ def get_answer_by_test_name(test_name: str):
     if(test_name != None ):
         return StudentAnswersRepository.get_answer_by_test_name("\'"+test_name+"\'")
 
+@app.get("/test/getTestProperties/{test_name}")
+def getTestProperties(test_name: str):
+    return VisualizationPropertiesRepository.get_test_properties(test_name)
 
 uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")
