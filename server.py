@@ -317,6 +317,11 @@ def get_answer_by_test_name(test_name: str):
     if(test_name != None ):
         return StudentAnswersRepository.get_answer_by_test_name("\'"+test_name+"\'")
 
+@app.get("/rankingResult/{test_name}")
+def get_placing_by_test_name(test_name: str):
+    if(test_name != None ):
+        return StudentAnswersRepository.get_placing_by_test_name("\'"+test_name+"\'")
+
 
 @app.post("/rank")
 def add_rank(rank_info: RankCreate):

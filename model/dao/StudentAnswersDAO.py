@@ -9,3 +9,6 @@ def get_answer_by_test_name(testName):
      INNER JOIN visualiztions on visualiztion_properties.visualiztion_id = visualiztions.id 
      INNER JOIN StudentSummary on StudentSummary.studentID = StudentAnswers.studentID AND StudentSummary.text_id=visualiztion_properties.text_id
      WHERE test_name=""" + testName)
+
+def get_placing_by_test_name(test_name):
+    return ("SELECT * FROM studentRank WHERE test_name=" + str(test_name))

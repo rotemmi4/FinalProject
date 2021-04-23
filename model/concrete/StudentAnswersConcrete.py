@@ -6,5 +6,7 @@ def get_answer_by_test_name(testName):
     query = StudentAnswersDAO.get_answer_by_test_name(testName)
     return sqlliteDButils.execute_select(query)
 
-
+def get_placing_by_test_name(testName):
+    query = StudentAnswersDAO.get_placing_by_test_name(testName)
+    return sqlliteDButils.execute_select(query)
 
