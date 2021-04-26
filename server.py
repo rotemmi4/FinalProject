@@ -312,10 +312,10 @@ def get_text_total_info(text_id: int):
     # print("here?")
     return arrResponse
 
-@app.get("/result/{test_name}")
-def get_answer_by_test_name(test_name: str):
+@app.get("/result/{test_name}/{visualization}")
+def get_answer_by_test_name(test_name: str, visualization: str):
     if(test_name != None ):
-        return StudentAnswersRepository.get_answer_by_test_name("\'"+test_name+"\'")
+        return StudentAnswersRepository.get_answer_by_test_name("\'"+test_name+"\'", "\'"+visualization+"\'")
 
 @app.get("/rankingResult/{test_name}")
 def get_placing_by_test_name(test_name: str):
