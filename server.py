@@ -98,6 +98,14 @@ class RankUpdate(BaseModel):
     student_id: str
     rank_order: str
 
+class QuestionResult(BaseModel):
+    answer: bool
+    question_id: int
+    student_id: str
+    test_name: str
+    time: float
+
+
 @app.get("/")
 def read_root():
     pass
@@ -248,8 +256,8 @@ def get_questions_by_text_id(text_id: int):
 
 
 @app.post("/student/set_question_results")
-def get_questions_by_text_id(results: list):
-    return StudentRepository.insert_question_results(results)
+def get_questions_by_text_id(questionResult: QuestionResult):
+    return StudentRepository.insert_question_results(questionResult)
 
 
 @app.get("/text/get_visualization/{text_id}")

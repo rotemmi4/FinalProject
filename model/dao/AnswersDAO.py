@@ -10,4 +10,4 @@ def get_answers():
     return ("SELECT * FROM answers")
 
 def get_all_answers_by_question_id(question_id):
-    return ("SELECT answer_content, is_currect FROM answers WHERE question_id=" + str(question_id))
+    return ("SELECT answer_content, is_correct FROM answers WHERE question_id=" + str(question_id))

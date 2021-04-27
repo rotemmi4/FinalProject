@@ -31,8 +31,7 @@ def get_all_answers_by_question_id(question_id):
 
 def insert_question_results(results):
     try:
-        for res in results:
-            StudentConcrete.insert_question_results(res)
+        StudentConcrete.insert_question_results(results)
         return "succeed to insert question results"
     except Exception as e:
         return str(e)

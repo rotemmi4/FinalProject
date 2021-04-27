@@ -25,8 +25,8 @@ def get_test_ids():
 # def get_student_texts(student_id):
 #     pass
 
-def insert_question_results(student_id, question_id, is_correct, time):
-    return ("INSERT INTO StudentAnswers (studentID, question_id, is_correct, time_to_answer) values (?,?,?,?);")
+def insert_question_results(student_id, question_id, is_correct, time, test_name):
+    return ("INSERT INTO StudentAnswers (studentID, question_id, is_correct, time_to_answer, test_name) values (?,?,?,?,?);")
 
 
 def get_texts_by_test_id(test_name):

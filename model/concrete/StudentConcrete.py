@@ -26,12 +26,13 @@ def get_all_answers_by_question_id(question_id):
 
 
 def insert_question_results(results):
-    is_correct = results['answer']
-    time = results['time']
-    question_id = results['question_id']
-    student_id = results['student_id']
-    query = StudenInfoDAO.insert_question_results(student_id, question_id, is_correct, time)
-    val = (student_id, question_id, is_correct, time)
+    is_correct = results.answer
+    time = results.time
+    question_id = results.question_id
+    student_id = int(results.student_id)
+    test_name = results.test_name
+    query = StudenInfoDAO.insert_question_results(student_id, question_id, is_correct, time, test_name)
+    val = (student_id, question_id, is_correct, time, test_name)
     return sqlliteDButils.execute_run(query, val)
 
 
