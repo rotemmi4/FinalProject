@@ -50,6 +50,7 @@ class TextVisu(BaseModel):
     propName: str
     propVal: str
     propType: str
+    threshold: float
 class TestType(BaseModel):
     testName:str
     testType: str
@@ -153,6 +154,16 @@ def delete_text(textId: TextDelete):
 @app.post("/deleteText")
 def delete_text(textId : TextDelete):
     return TextRepository.delete_text(textId.id)
+
+@app.post("/tests/deleteTest/{name}")
+def delete_test_by_name(name: str):
+    TestTypeRepository.delete_test_by_name(name)
+
+@app.post("/tests/deleteTestProperties/{name}")
+def delete_test_by_name(name: str):
+
+    VisualizationPropertiesRepository.delete_test_properties(name)
+
 
 @app.post("/addQuestion")
 def add_question(question : QuestionCreate):
@@ -350,6 +361,9 @@ def update_rank(rank_info: RankUpdate):
     return RankRepository.update_rank(student_id ,rank_order)
 
 
+@app.get("/getTestProperties/{test_name}")
+def getTestProperties(test_name: str):
+    return VisualizationPropertiesRepository.get_test_properties(test_name)
 
 uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")
