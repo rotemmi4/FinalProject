@@ -16,7 +16,9 @@ def get_answers():
     return ("SELECT * FROM visualiztion_properties")
 
 def get_test_properties(testName):
-    return ("SELECT * FROM visualiztion_properties where test_id={} ".format("\""+testName+"\""))
+    return ("""SELECT test_id,text_id, texts.name, visualiztion_id,property_name,property_value,property_type,threshold FROM visualiztion_properties
+     INNER JOIN texts on visualiztion_properties.text_id = texts.id 
+     where test_id={} """.format("\""+testName+"\""))
 
 
 def delete_test_by_name(test_name):

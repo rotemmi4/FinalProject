@@ -313,7 +313,7 @@ def get_answer_by_test_name(test_name: str):
     if(test_name != None ):
         return StudentAnswersRepository.get_answer_by_test_name("\'"+test_name+"\'")
 
-@app.get("/test/getTestProperties/{test_name}")
+@app.get("/getTestProperties/{test_name}")
 def getTestProperties(test_name: str):
     return VisualizationPropertiesRepository.get_test_properties(test_name)
 
