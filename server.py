@@ -209,7 +209,6 @@ def get_random_texts_and_visualization():
 @app.get("/questions/{id}")
 def get_questions_by_id(id: int):
     question = QuestionRepository.get_questions_by_id(id)
-    print(question)
     return question
 
 @app.post("/auth/login")
@@ -331,10 +330,79 @@ def get_text_total_info(text_id: int):
     # print("here?")
     return arrResponse
 
-@app.get("/result/{test_name}/{visualization}")
-def get_answer_by_test_name(test_name: str, visualization: str):
+@app.get("/sumResults/{test_name}")
+def get_answer_by_test_name_SUM(test_name: str):
+    res = []
     if(test_name != None ):
-        return StudentAnswersRepository.get_answer_by_test_name("\'"+test_name+"\'", "\'"+visualization+"\'")
+        res1 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "WithoutVisualization")
+        # res2 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "GradualHighlight")
+        # res3 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "Highlight")
+        res4 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "IncreasedFont")
+        # res5 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "GradualFont")
+        # res6 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "SummaryOnly")
+        # if(res1 != None and res2 != None and res3 != None and res4 != None and res5 != None and res6 != None):
+        for i in range(len(res1)):
+            dic={}
+            dic['studentID']=res1[i]['studentID']
+            dic['studentAge']=res1[i]['studentAge']
+            dic['studentGender']=res1[i]['studentGender']
+            dic['Without Visualization']=res1[i]['SUM(time_to_answer)']
+            # dic['Gradual Highlight']=res2[i]['SUM(time_to_answer)']
+            # dic['Highlight']=res3[i]['SUM(time_to_answer)']
+            dic['Increased Font']=res4[i]['SUM(time_to_answer)']
+            # dic['Gradual Font']=res5[i]['SUM(time_to_answer)']
+            # dic['Summary Only']=res6[i]['SUM(time_to_answer)']
+            res.append(dic)
+            print(res)
+    return res
+
+@app.get("/countResults/{test_name}")
+def get_answer_by_test_name_COUNT(test_name: str):
+    res = []
+    if (test_name != None):
+        res1 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "WithoutVisualization")
+        # res2 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "GradualHighlight")
+        # res3 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "Highlight")
+        res4 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "IncreasedFont")
+        # res5 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "GradualFont")
+        # res6 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "SummaryOnly")
+        for i in range(len(res1)):
+            dic = {}
+            dic['studentID'] = res1[i]['studentID']
+            dic['studentAge'] = res1[i]['studentAge']
+            dic['studentGender'] = res1[i]['studentGender']
+            dic['Without Visualization'] = res1[i]['COUNT(is_correct)*1.25']
+            # dic['Gradual Highlight'] = res2[i]['COUNT(is_correct)*1.25']
+            # dic['Highlight'] = res3[i]['COUNT(is_correct)*1.25']
+            dic['Increased Font'] = res4[i]['COUNT(is_correct)*1.25']
+            # dic['Gradual Font'] = res5[i]['COUNT(is_correct)*1.25']
+            # dic['Summary Only'] = res6[i]['COUNT(is_correct)*1.25']
+            res.append(dic)
+    return res
+
+@app.get("/avgResults/{test_name}")
+def get_answer_by_test_name_AVG(test_name: str):
+    res = []
+    if (test_name != None):
+        res1 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "WithoutVisualization")
+        # res2 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "GradualHighlight")
+        # res3 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "Highlight")
+        res4 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "IncreasedFont")
+        # res5 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "GradualFont")
+        # res6 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "SummaryOnly")
+        for i in range(len(res1)):
+            dic = {}
+            dic['studentID'] = res1[i]['studentID']
+            dic['studentAge'] = res1[i]['studentAge']
+            dic['studentGender'] = res1[i]['studentGender']
+            dic['Without Visualization'] = res1[i]['AVG(time_to_answer)']
+            # dic['Gradual Highlight'] = res2[i]['AVG(time_to_answer)']
+            # dic['Highlight'] = res3[i]['AVG(time_to_answer)']
+            dic['Increased Font'] = res4[i]['AVG(time_to_answer)']
+            # dic['Gradual Font'] = res5[i]['AVG(time_to_answer)']
+            # dic['Summary Only'] = res6[i]['AVG(time_to_answer)']
+            res.append(dic)
+    return res
 
 @app.get("/rankingResult/{test_name}")
 def get_placing_by_test_name(test_name: str):
