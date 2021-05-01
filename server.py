@@ -93,11 +93,15 @@ class RankCreate(BaseModel):
     increasedFont: int
     gradualFont: int
     summaryOnly: int
-    rank_order: str
 
 class RankUpdate(BaseModel):
-    student_id: str
-    rank_order: str
+    student_id: int
+    firstPlace: str
+    secondPlace: str
+    thirdPlace: str
+    fourthPlace: str
+    fifthPlace: str
+    sixthPlace: str
 
 class QuestionResult(BaseModel):
     answer: bool
@@ -419,14 +423,19 @@ def add_rank(rank_info: RankCreate):
     increasedFont = rank_info.increasedFont
     gradualFont = rank_info.gradualFont
     summaryOnly = rank_info.summaryOnly
-    rank_order = rank_info.rank_order
-    return RankRepository.insert_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont,gradualFont, summaryOnly,rank_order)
+    return RankRepository.insert_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont, gradualFont, summaryOnly)
 
 @app.post("/updateRankOrder")
 def update_rank(rank_info: RankUpdate):
-    student_id= rank_info.student_id
-    rank_order = rank_info.rank_order
-    return RankRepository.update_rank(student_id ,rank_order)
+    student_id = rank_info.student_id
+    firstPlace = rank_info.firstPlace
+    secondPlace = rank_info.secondPlace
+    thirdPlace = rank_info.thirdPlace
+    fourthPlace = rank_info.fourthPlace
+    fifthPlace = rank_info.fifthPlace
+    sixthPlace = rank_info.sixthPlace
+    d_places = {firstPlace: "1", secondPlace: "2", thirdPlace: "3", fourthPlace: "4", fifthPlace: "5", sixthPlace: "6" }
+    return RankRepository.update_rank(student_id, d_places)
 
 
 @app.get("/getTestProperties/{test_name}")

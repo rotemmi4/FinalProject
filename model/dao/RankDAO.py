@@ -1,11 +1,17 @@
 
-def insert_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont,gradualFont, summaryOnly,rank_order):
-    return ("INSERT INTO studentRank (student_id, withoutVisualization, gradualHighlight, highlight, increasedFont,gradualFont, summaryOnly,rank_order) values (?,?,?,?,?,?,?,?)")
+def insert_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont,gradualFont, summaryOnly):
+    return ("INSERT INTO studentRank (student_id, withoutVisualization_rank, gradualHighlight_rank, highlight_rank, increasedFont_rank, gradualFont_rank, summaryOnly_rank) values (?,?,?,?,?,?,?)")
 
 
-def update_rank(student_id, rank_order):
-    return ('UPDATE studentRank SET rank_order = "' + rank_order  + '" WHERE student_id = "' + student_id +'"' )
-
+def update_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont, gradualFont, summaryOnly):
+    return (''' UPDATE studentRank
+              SET WithoutVisualization_place = ? ,
+                  gradualHighlight_place = ? ,
+                  highlight_place = ? ,
+                  increasedFont_place = ? ,
+                  gradualFont_place = ? ,
+                  summaryOnly_place = ?
+              WHERE student_id = ?''')
 
 
 def get_rank_by_id(student_id):
