@@ -19,7 +19,7 @@ def get_answer_by_test_name_COUNT(testName, visualization):
      INNER JOIN questions on questions.question_id = StudentAnswers.question_id 
      INNER JOIN visualiztion_properties on visualiztion_properties.text_id = questions.text_id 
      INNER JOIN visualiztions on visualiztion_properties.visualiztion_id = visualiztions.id 
-     WHERE test_name={} AND visualiztions.type= {} AND StudentAnswers.is_correct=\"true\" GROUP BY StudentInfo.studentID """.format(testName, "\'" + visualization + "\'"))
+     WHERE test_name={} AND visualiztions.type= {} AND StudentAnswers.is_correct=1 GROUP BY StudentInfo.studentID """.format(testName, "\'" + visualization + "\'"))
 
 def get_answer_by_test_name_AVG(testName, visualization):
     return ("""SELECT StudentInfo.studentID, studentAge, studentGender, visualiztions.type, is_correct, AVG(time_to_answer)
