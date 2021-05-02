@@ -84,6 +84,7 @@ class StudentInfo(BaseModel):
     studentID: int
     studentAge: int
     studentGender: str
+    studentName: str
 
 class RankCreate(BaseModel):
     student_id: int
@@ -109,6 +110,11 @@ class QuestionResult(BaseModel):
     student_id: str
     test_name: str
     time: float
+
+class StudentSummary(BaseModel):
+    student_id: int
+    text_id: str
+    summary: str
 
 
 @app.get("/")
@@ -242,7 +248,8 @@ def set_info_student(student_info: StudentInfo):
     studentID = student_info.studentID
     studentAge = student_info.studentAge
     studentGender = student_info.studentGender
-    return StudentRepository.insert_info(studentID, studentAge, studentGender)
+    studentName = student_info.studentName
+    return StudentRepository.insert_info(studentID, studentAge, studentGender, studentName)
     # pass
 
 @app.get("/student/get_test_id")
@@ -441,6 +448,17 @@ def update_rank(rank_info: RankUpdate):
 @app.get("/getTestProperties/{test_name}")
 def getTestProperties(test_name: str):
     return VisualizationPropertiesRepository.get_test_properties(test_name)
+
+
+
+@app.post("/saveSummary")
+def update_rank(studentSummary: StudentSummary):
+    studentId = studentSummary.student_id
+    text_id = studentSummary.text_id
+    summary = studentSummary.summary
+    return StudentRepository.saveStudentSummary(studentId, text_id, summary)
+
+
 
 uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")

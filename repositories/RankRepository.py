@@ -12,3 +12,6 @@ def update_rank(student_id, d_places):
     gradualFont = d_places["gradualFont"]
     summaryOnly = d_places["summaryOnly"]
     return RankConcrete.update_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont, gradualFont, summaryOnly)
+
+
+

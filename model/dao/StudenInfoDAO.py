@@ -1,6 +1,6 @@
 
 def insert_info():
-    return ("INSERT INTO StudentInfo (studentID, studentAge, studentGender) values (?,?,?);")
+    return ("INSERT INTO StudentInfo (studentID, studentAge, studentGender, name) values (?,?,?,?);")
 
 def get_test_ids():
     return ("SELECT test_id FROM visualiztion_properties")
@@ -35,3 +35,7 @@ def get_texts_by_test_id(test_name):
  # here?!
 def get_type_by_text_id(test_id):
     return ("SELECT visualiztion_id FROM visualiztion_properties WHERE text_id=" + str(test_id))
+
+
+def saveStudentSummary(studentId, text_id, summary):
+    return ("INSERT INTO StudentSummary (StudentID, text_id, Summary) values (?,?,?);")

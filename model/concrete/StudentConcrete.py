@@ -4,9 +4,9 @@ from model.dao import StudenInfoDAO, questionsDAO, AnswersDAO
 
 # Building a query - Step 2
 
-def insert_info(student_id, age, gender):
+def insert_info(student_id, age, gender, studentName):
     query = StudenInfoDAO.insert_info()
-    val = (student_id, age, gender)
+    val = (student_id, age, gender, studentName)
     return sqlliteDButils.execute_run(query, val)
 
 def get_test_ids():
@@ -44,3 +44,9 @@ def get_texts_by_test_id(test_id):
 def get_type_by_text_id(text_id):
     query = StudenInfoDAO.get_type_by_text_id(text_id)
     return sqlliteDButils.execute_select(query)
+
+
+def saveStudentSummary(studentId, text_id, summary):
+    query = StudenInfoDAO.saveStudentSummary(studentId, text_id, summary)
+    val = (studentId, text_id, summary)
+    return sqlliteDButils.execute_run(query, val)

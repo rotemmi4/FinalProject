@@ -1,8 +1,8 @@
 from model.concrete import StudentConcrete
 
 
-def insert_info(student_id, age, gender):
-    return StudentConcrete.insert_info(student_id, age, gender)
+def insert_info(student_id, age, gender, studentName):
+    return StudentConcrete.insert_info(student_id, age, gender, studentName)
 
 
 # def update_text(id, name, content):
@@ -44,3 +44,7 @@ def get_texts_by_test_id(test_id):
 
 def get_type_by_text_id(text_id):
     return StudentConcrete.get_type_by_text_id(text_id)
+
+
+def saveStudentSummary(studentId, text_id, summary):
+    return StudentConcrete.saveStudentSummary(studentId, text_id, summary)
