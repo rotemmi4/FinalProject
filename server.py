@@ -9,7 +9,7 @@ from pydantic import BaseModel
 from repositories import TextRepository, VisualizationPropertiesRepository, StudentRepository, StudentAnswersRepository
 from pydantic import BaseModel, Field
 import jwt
-from algorithems import RandomAlgorithem
+from algorithems import RandomAlgorithem, TextRankAlgorithem
 
 from typing import Optional
 
@@ -202,11 +202,20 @@ def get_text_weights(id: int):
     text = TextRepository.get_text_by_id(id)
     response= {}
     if (text):
-        response = RandomAlgorithem.getWeights(text[0],'random')
+
+        # response1 = RandomAlgorithem.getWeights(text[0],'random')
+        # print("#######################################################################")
+        response = TextRankAlgorithem.textRank_algorithm(text[0])
 #         response = AlgorithemFactory.get('random').getWeight(text[0])
+#     print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+#     arrResponse1 =[]
+#     if(response1):
+#         arrResponse1.append(response1)
+#         print(response1)
     arrResponse =[]
     if(response):
         arrResponse.append(response)
+        print(response)
     return arrResponse
 
 @app.get("/getRandom")
