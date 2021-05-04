@@ -3,7 +3,9 @@ import random
 from model.concrete import TextConcrete
 
 
-colorDictionary = ["204,204,204","179,179,179","244,78,59","211,49,21","159,5,0","154,146,0","226,115,0","196,81,0","252,220,0","252,196,0","251,158,0","219,223,0","176,18,0","128,137,0","164,221,0","104,188,0","104,204,204","22,165,165","12,121,125","115,216,225","0,156,224","0,98,177","174,161,255","123,100,255","253,161,255","250,40,255","171,20,158"]
+colorDictionaryHighlight = ["Yellow","Green"]
+colorDictionaryGradualHighlight = ["Yellow","Green","Orange"]
+sizeDictionaryGradualHighlight = ['3','4','5','6','7','8']
 
 def insert_text(name, content):
     return TextConcrete.insert_text(name, content)
@@ -76,10 +78,16 @@ def get_random_text_and_visualizations(numberOfRandom):
             dic["threshold"] = float("{:.2f}".format(random.uniform(0.01, 1.0)))
         else:
             dic["threshold"] = 0.5
-        if (visualization[j] == "Gradual Highlight" or visualization[j] == "Highlight"):
-            num = random.randint(0, len(colorDictionary)-1)
+        if (visualization[j] == "Highlight"):
+            num = random.randint(0, len(colorDictionaryHighlight)-1)
             dic["propertyName"] = "color"
-            dic["propertyValue"] = colorDictionary[num]
+            dic["propertyValue"] = "1"+","+colorDictionaryHighlight[num]
+            dic["propertyType"] = "str"
+        elif (visualization[j] == "Gradual Highlight"):
+            numColor = random.randint(0, len(colorDictionaryGradualHighlight)-1)
+            numSize = random.randint(0, len(sizeDictionaryGradualHighlight)-1)
+            dic["propertyName"] = "color"
+            dic["propertyValue"] = sizeDictionaryGradualHighlight[numSize]+","+colorDictionaryGradualHighlight[numColor]
             dic["propertyType"] = "str"
         elif (visualization[j] == "Gradual Font" or visualization[j] == "Increased Font"):
             dic["propertyName"] = "font"
