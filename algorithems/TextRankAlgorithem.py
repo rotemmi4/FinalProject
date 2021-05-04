@@ -132,7 +132,7 @@ def textRank_algorithm(text_file):
         "sentences": arr,
         "name":  text_file['name']
     }
-    print(response,type(response))
+    # print(response,type(response))
     return response
 
 

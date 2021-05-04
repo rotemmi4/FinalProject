@@ -215,7 +215,7 @@ def get_text_weights(id: int):
     arrResponse =[]
     if(response):
         arrResponse.append(response)
-        print(response)
+        # print(response)
     return arrResponse
 
 @app.get("/getRandom")
