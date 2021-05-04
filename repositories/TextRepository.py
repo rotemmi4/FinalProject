@@ -27,7 +27,7 @@ def get_random_text(numOfText):
     for i in range(0,numOfText):
         found = False
         while(found==False):
-            num=random.randint(1, len(texts))
+            num=random.randint(1, max(texts))
             if((num not in randomTexts) and (num in texts)):
                 randomTexts.append(num)
                 found = True
