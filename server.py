@@ -312,6 +312,7 @@ def get_visualiztion_by_id(text_id: int):
 @app.get("/student/get_texts_by_testid/{test_id}")
 def get_texts_by_test_id(test_id: str):
     text_ids = StudentRepository.get_texts_by_test_id(test_id)
+    random.shuffle(text_ids)
     return text_ids
 
 @app.get("/student/get_type_by_text_id/{text_id}")
