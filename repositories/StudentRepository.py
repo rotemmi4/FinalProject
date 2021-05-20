@@ -46,5 +46,5 @@ def get_type_by_text_id(text_id):
     return StudentConcrete.get_type_by_text_id(text_id)
 
 
-def saveStudentSummary(studentId, text_id, summary):
-    return StudentConcrete.saveStudentSummary(studentId, text_id, summary)
+def saveStudentSummary(studentId, text_id, summary, reading_time, summary_time):
+    return StudentConcrete.saveStudentSummary(studentId, text_id, summary, reading_time, summary_time)

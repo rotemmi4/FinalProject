@@ -2,6 +2,7 @@ import random
 
 import uvicorn as uvicorn
 from fastapi.middleware.cors import CORSMiddleware
+from more_itertools import take
 
 from repositories import TextRepository, VisualizationPropertiesRepository, QuestionRepository, AnswerRepository, \
     TestTypeRepository, RankRepository
@@ -115,6 +116,8 @@ class StudentSummary(BaseModel):
     student_id: int
     text_id: str
     summary: str
+    readingTime: float
+    summaryTime: float
 
 
 @app.get("/")
@@ -338,6 +341,7 @@ def get_texts_by_test_id(text_id: int):
 
 @app.get("/texts/{text_id}/all_info")
 def get_text_total_info(text_id: int):
+
     text = TextRepository.get_text_by_id(text_id)
     response = {}
     if text:
@@ -348,7 +352,7 @@ def get_text_total_info(text_id: int):
         arrResponse.append(response)
     text_type = get_texts_by_test_id(text_id)
     arrResponse[0]["type"] = text_type
-    # print("here?")
+    # print(text_type)
     return arrResponse
 
 @app.get("/sumResults/{test_name}")
@@ -477,6 +481,31 @@ def update_rank(rank_info: RankUpdate):
 def getTestProperties(test_name: str):
     return VisualizationPropertiesRepository.get_test_properties(test_name)
 
+@app.get("/getTestGlobalInfo/{test_name}")
+def getTestProperties(test_name: str):
+    data = VisualizationPropertiesRepository.get_test_properties(test_name)
+    # first_set = []
+    # second_set = []
+    # third_set = []
+
+    for text in data:
+        # we will change how we get the text sentence with weights!
+        text_info = get_text_total_info(int(text['text_id']))
+        text['type'] = convert_visualization_ids_to_types(text['visualiztion_id'])
+        text['sentences'] = text_info[0]['sentences']
+
+        # if text['set_num'] == 1:
+        #     first_set.append(text)
+        # elif text['set_num'] == 2:
+        #     second_set.append(text)
+        # else:
+        #     third_set.append(text)
+
+    # split -> shuffle -> merge
+    # n_items = data[:2]
+
+    print(data)
+    return data
 
 
 @app.post("/saveSummary")
@@ -484,9 +513,25 @@ def update_rank(studentSummary: StudentSummary):
     studentId = studentSummary.student_id
     text_id = studentSummary.text_id
     summary = studentSummary.summary
-    return StudentRepository.saveStudentSummary(studentId, text_id, summary)
+    readingTime = studentSummary.readingTime
+    summaryTime = studentSummary.summaryTime
+    return StudentRepository.saveStudentSummary(studentId, text_id, summary, readingTime, summaryTime)
 
-
+def convert_visualization_ids_to_types(id):
+    if id == 0:
+        return "Without Visualization"
+    elif id == 2:
+        return "Highlight"
+    elif id == 1:
+        return "Gradual Highlight"
+    elif id == 3:
+        return "Increased Font"
+    elif id == 4:
+        return "Gradual Font"
+    elif id == 5:
+        return "Summary Only"
+    else:
+        return "Highlight"
 
 uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")

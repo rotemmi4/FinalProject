@@ -46,7 +46,7 @@ def get_type_by_text_id(text_id):
     return sqlliteDButils.execute_select(query)
 
 
-def saveStudentSummary(studentId, text_id, summary):
-    query = StudenInfoDAO.saveStudentSummary(studentId, text_id, summary)
-    val = (studentId, text_id, summary)
+def saveStudentSummary(studentId, text_id, summary, reading_time, summary_time):
+    query = StudenInfoDAO.saveStudentSummary(studentId, text_id, summary, reading_time, summary_time)
+    val = (studentId, text_id, summary, reading_time, summary_time)
     return sqlliteDButils.execute_run(query, val)

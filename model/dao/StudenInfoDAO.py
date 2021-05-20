@@ -37,5 +37,5 @@ def get_type_by_text_id(test_id):
     return ("SELECT visualiztion_id FROM visualiztion_properties WHERE text_id=" + str(test_id))
 
 
-def saveStudentSummary(studentId, text_id, summary):
-    return ("INSERT INTO StudentSummary (StudentID, text_id, Summary) values (?,?,?);")
+def saveStudentSummary(studentId, text_id, summary, reading_time, summary_time):
+    return ("INSERT INTO StudentSummary (StudentID, text_id, Summary, ReadingTime, SummaryTime) values (?,?,?,?,?);")
