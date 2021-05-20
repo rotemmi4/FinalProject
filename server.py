@@ -20,7 +20,7 @@ admin_password = 'admin'
 secret = 'Mr.Awesome'
 
 app = FastAPI()
-
+#dfg
 origins = [
     "http://localhost.tiangolo.com",
     "https://localhost.tiangolo.com",
