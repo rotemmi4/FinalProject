@@ -7,7 +7,7 @@ def insert_rank(student_id, withoutVisualization, gradualHighlight, highlight, i
     val = (student_id, withoutVisualization, gradualHighlight, highlight, increasedFont, gradualFont, summaryOnly)
     return sqlliteDButils.execute_run(query, val)
 
-def update_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont, gradualFont, summaryOnly):
-    query = RankDAO.update_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont, gradualFont, summaryOnly)
-    val = (withoutVisualization, gradualHighlight, highlight, increasedFont, gradualFont, summaryOnly, student_id)
+def update_rank(student_id, WithoutVisualization_place,gradualHighlight_place,highlight_place,increasedFont_place,gradualFont_place,summaryOnly_place):
+    query = RankDAO.update_rank(student_id, WithoutVisualization_place,gradualHighlight_place,highlight_place,increasedFont_place, gradualFont_place,summaryOnly_place)
+    val = (WithoutVisualization_place,gradualHighlight_place,highlight_place,increasedFont_place,gradualFont_place,summaryOnly_place, student_id)
     return sqlliteDButils.execute_run(query, val)

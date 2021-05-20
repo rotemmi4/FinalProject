@@ -3,7 +3,7 @@ def insert_rank(student_id, withoutVisualization, gradualHighlight, highlight, i
     return ("INSERT INTO studentRank (student_id, withoutVisualization_rank, gradualHighlight_rank, highlight_rank, increasedFont_rank, gradualFont_rank, summaryOnly_rank) values (?,?,?,?,?,?,?)")
 
 
-def update_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont, gradualFont, summaryOnly):
+def update_rank(student_id, WithoutVisualization_place, gradualHighlight_place, highlight_place,increasedFont_place, gradualFont_place, summaryOnly_place):
     return (''' UPDATE studentRank
               SET WithoutVisualization_place = ? ,
                   gradualHighlight_place = ? ,

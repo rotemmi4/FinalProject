@@ -97,12 +97,12 @@ class RankCreate(BaseModel):
 
 class RankUpdate(BaseModel):
     student_id: int
-    firstPlace: str
-    secondPlace: str
-    thirdPlace: str
-    fourthPlace: str
-    fifthPlace: str
-    sixthPlace: str
+    WithoutVisualization_place: str
+    highlight_place: str
+    increasedFont_place: str
+    summaryOnly_place: str
+    gradualHighlight_place: str
+    gradualFont_place: str
 
 class QuestionResult(BaseModel):
     answer: bool
@@ -161,9 +161,6 @@ def delete_text(textId: TextDelete):
     return TextRepository.delete_text(textId.id)
 
 
-@app.post("/deleteText")
-def delete_text(textId : TextDelete):
-    return TextRepository.delete_text(textId.id)
 
 @app.post("/tests/deleteTest/{name}")
 def delete_test_by_name(name: str):
@@ -460,17 +457,20 @@ def add_rank(rank_info: RankCreate):
     summaryOnly = rank_info.summaryOnly
     return RankRepository.insert_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont, gradualFont, summaryOnly)
 
+
 @app.post("/updateRankOrder")
 def update_rank(rank_info: RankUpdate):
     student_id = rank_info.student_id
-    firstPlace = rank_info.firstPlace
-    secondPlace = rank_info.secondPlace
-    thirdPlace = rank_info.thirdPlace
-    fourthPlace = rank_info.fourthPlace
-    fifthPlace = rank_info.fifthPlace
-    sixthPlace = rank_info.sixthPlace
-    d_places = {firstPlace: "1", secondPlace: "2", thirdPlace: "3", fourthPlace: "4", fifthPlace: "5", sixthPlace: "6" }
-    return RankRepository.update_rank(student_id, d_places)
+    WithoutVisualization_place = rank_info.WithoutVisualization_place
+    highlight_place = rank_info.highlight_place
+    increasedFont_place = rank_info.increasedFont_place
+    summaryOnly_place = rank_info.summaryOnly_place
+    gradualHighlight_place = rank_info.gradualHighlight_place
+    gradualFont_place = rank_info.gradualFont_place
+    # d_places = {firstPlace: "1", secondPlace: "2", thirdPlace: "3", fourthPlace: "4", fifthPlace: "5", sixthPlace: "6" }
+
+    return RankRepository.update_rank(student_id, WithoutVisualization_place,gradualHighlight_place,highlight_place,increasedFont_place,
+                                      gradualFont_place,summaryOnly_place)
 
 
 @app.get("/getTestProperties/{test_name}")
