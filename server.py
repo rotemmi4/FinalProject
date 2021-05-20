@@ -481,31 +481,35 @@ def update_rank(rank_info: RankUpdate):
 def getTestProperties(test_name: str):
     return VisualizationPropertiesRepository.get_test_properties(test_name)
 
-@app.get("/getTestGlobalInfo/{test_name}")
-def getTestProperties(test_name: str):
+@app.get("/getTestGlobalInfo/{test_info}")
+def getTestProperties(test_info: str):
+    test_name, set_place = test_info.split("is")
     data = VisualizationPropertiesRepository.get_test_properties(test_name)
-    # first_set = []
-    # second_set = []
-    # third_set = []
+    first_set = []
+    second_set = []
+    third_set = []
 
     for text in data:
         # we will change how we get the text sentence with weights!
         text_info = get_text_total_info(int(text['text_id']))
         text['type'] = convert_visualization_ids_to_types(text['visualiztion_id'])
         text['sentences'] = text_info[0]['sentences']
+        if text['set_num'] == 1:
+            first_set.append(text)
+        elif text['set_num'] == 2:
+            second_set.append(text)
+        else:
+            third_set.append(text)
 
-        # if text['set_num'] == 1:
-        #     first_set.append(text)
-        # elif text['set_num'] == 2:
-        #     second_set.append(text)
-        # else:
-        #     third_set.append(text)
+    random.shuffle(first_set)
+    random.shuffle(second_set)
+    random.shuffle(third_set)
 
-    # split -> shuffle -> merge
-    # n_items = data[:2]
+    if set_place == "before":
+        return first_set + second_set
+    else:
+        return third_set
 
-    print(data)
-    return data
 
 
 @app.post("/saveSummary")
