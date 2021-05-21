@@ -95,6 +95,7 @@ class RankCreate(BaseModel):
     increasedFont: int
     gradualFont: int
     summaryOnly: int
+    textId: str
 
 class RankUpdate(BaseModel):
     student_id: int
@@ -459,7 +460,9 @@ def add_rank(rank_info: RankCreate):
     increasedFont = rank_info.increasedFont
     gradualFont = rank_info.gradualFont
     summaryOnly = rank_info.summaryOnly
-    return RankRepository.insert_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont, gradualFont, summaryOnly)
+    textId = rank_info.textId
+    return RankRepository.insert_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont,
+                                      gradualFont, summaryOnly, textId)
 
 
 @app.post("/updateRankOrder")
@@ -499,6 +502,8 @@ def getTestProperties(test_info: str):
         elif text['set_num'] == 2:
             second_set.append(text)
         else:
+            for sentence in text['sentences']:
+                sentence["weight"] = str(1 - float(sentence["weight"]))
             third_set.append(text)
 
     random.shuffle(first_set)

@@ -1,6 +1,6 @@
 
-def insert_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont,gradualFont, summaryOnly):
-    return ("INSERT INTO studentRank (student_id, withoutVisualization_rank, gradualHighlight_rank, highlight_rank, increasedFont_rank, gradualFont_rank, summaryOnly_rank) values (?,?,?,?,?,?,?)")
+def insert_rank(student_id, withoutVisualization, gradualHighlight, highlight, increasedFont,gradualFont, summaryOnly, textId):
+    return ("INSERT INTO studentRank (student_id, withoutVisualization_rank, gradualHighlight_rank, highlight_rank, increasedFont_rank, gradualFont_rank, summaryOnly_rank, test_name) values (?,?,?,?,?,?,?,?)")
 
 
 def update_rank(student_id, WithoutVisualization_place, gradualHighlight_place, highlight_place,increasedFont_place, gradualFont_place, summaryOnly_place):
