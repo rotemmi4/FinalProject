@@ -52,6 +52,7 @@ class TextVisu(BaseModel):
     propVal: str
     propType: str
     threshold: float
+    setNum: int
 class TestType(BaseModel):
     testName:str
     testType: str
@@ -221,10 +222,10 @@ def get_text_weights(id: int):
 
 @app.get("/getRandom")
 def get_random_texts():
-    return TextRepository.get_random_text(12)
+    return TextRepository.get_random_text(18)
 @app.get("/getRandomTextAndVisualization")
 def get_random_texts_and_visualization():
-    return TextRepository.get_random_text_and_visualizations(12)
+    return TextRepository.get_random_text_and_visualizations(18)
 
 @app.get("/questions/{id}")
 def get_questions_by_id(id: int):

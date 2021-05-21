@@ -47,7 +47,7 @@ def get_random_visualization(numOfVisualizations):
         found = False
         while (found == False):
             num = random.randint(0, 5)
-            if (randomVisualizations.count(num)<2):
+            if (randomVisualizations.count(num)<3):
                 randomVisualizations.append(num)
                 found = True
     for visu in randomVisualizations:
