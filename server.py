@@ -52,6 +52,7 @@ class TextVisu(BaseModel):
     propVal: str
     propType: str
     threshold: float
+    setNum: int
 class TestType(BaseModel):
     testName:str
     testType: str
