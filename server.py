@@ -543,6 +543,14 @@ def convert_visualization_ids_to_types(id):
     else:
         return "Highlight"
 
+
+
+@app.get("/test/{id}")
+def Test(id: int):
+    return TextRepository.get_text_weight(id)
+
+
+
 uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")
 # def delete_text():

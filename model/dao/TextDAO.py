@@ -12,6 +12,11 @@ def delete_text(id):
 def get_text_by_id(id):
     return ("SELECT * FROM texts WHERE id={}".format(id))
 
+def get_text_weight(id):
+    return ("SELECT sentences_weight FROM texts WHERE id={}".format(id))
+
+def get_text_name(id):
+    return ("SELECT name FROM texts WHERE id={}".format(id))
 
 
 def get_texts():
