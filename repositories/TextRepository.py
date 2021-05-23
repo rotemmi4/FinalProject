@@ -113,6 +113,7 @@ def get_all_id_texts():
 def get_text_weight(id):
 
     ans=[]
+    # print("id -> ", id)
     arr= TextConcrete.get_text_weight(id)[0][ "sentences_weight"][2:-3].split("}, {")
     for i in range(0,len(arr)):
         s = '{'+arr[i]+'}'
