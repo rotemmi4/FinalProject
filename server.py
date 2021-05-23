@@ -545,8 +545,8 @@ def convert_visualization_ids_to_types(id):
 
 
 
-@app.get("/test/{id}")
-def Test(id: int):
+@app.get("/text_weight/{id}")
+def Text_weight(id: int):
     return TextRepository.get_text_weight(id)
 
 
