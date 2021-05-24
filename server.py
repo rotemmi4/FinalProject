@@ -744,8 +744,8 @@ def getTestProperties(test_info: str):
         elif text['set_num'] == 2:
             second_set.append(text)
         else:
-            max_value = 0
-            min_value = 1
+            max_value = 0.0
+            min_value = 1.0
             for sentence in text['sentences']:
                 if float(sentence["weight"]) < min_value:
                     min_value = float(sentence["weight"])
