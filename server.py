@@ -2,7 +2,7 @@ import random
 
 import uvicorn as uvicorn
 from fastapi.middleware.cors import CORSMiddleware
-from more_itertools import take
+#from more_itertools import take
 
 from repositories import TextRepository, VisualizationPropertiesRepository, QuestionRepository, AnswerRepository, \
     TestTypeRepository, RankRepository
@@ -190,7 +190,7 @@ def add_question(question : QuestionCreate):
     AnswerRepository.insert_answer(4, queId[0]['queId'], question.text_id, question.answer4_isCorrect,
                                    question.answer4_content)
     pass
-#ddd
+
 # @app.post("/addAnswers")
 # def add_answers(answer : AnswersCreate):
 #     return AnswerRepository.insert_answer(answer.option_id, answer.question_id, answer.text_id, answer.is_correct, answer.answer_content)
@@ -358,99 +358,332 @@ def get_text_total_info(text_id: int):
 def get_answer_by_test_name_SUM(test_name: str):
     res = []
     if test_name != None :
-        res1 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "WithoutVisualization")
-        res2 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "GradualHighlight")
-        res3 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "Highlight")
-        res4 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "IncreasedFont")
-        res5 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "GradualFont")
-        res6 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "SummaryOnly")
-        # if len(res1) > 0 and len(res1) > 0 and len(res1) > 0 and res4 != None and res5 != None and res6 != None:
-        for i in range(len(res1)):
+        res_set1_1 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "WithoutVisualization", 1)
+        res_set1_2 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "GradualHighlight", 1)
+        res_set1_3 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "Highlight", 1)
+        res_set1_4 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "IncreasedFont", 1)
+        res_set1_5 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "GradualFont", 1)
+        res_set1_6 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "SummaryOnly", 1)
+        res_set2_1 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "WithoutVisualization", 2)
+        res_set2_2 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "GradualHighlight", 2)
+        res_set2_3 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "Highlight", 2)
+        res_set2_4 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "IncreasedFont", 2)
+        res_set2_5 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "GradualFont", 2)
+        res_set2_6 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "SummaryOnly", 2)
+        res_set3_1 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "WithoutVisualization", 3)
+        res_set3_2 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "GradualHighlight", 3)
+        res_set3_3 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "Highlight", 3)
+        res_set3_4 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "IncreasedFont", 3)
+        res_set3_5 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "GradualFont", 3)
+        res_set3_6 = StudentAnswersRepository.get_answer_by_test_name_SUM("\'" + test_name + "\'", "SummaryOnly", 3)
+        for i in range(len(res_set1_1)):
             dic={}
-            dic['studentID'] = res1[i]['studentID']
-            dic['studentAge'] = res1[i]['studentAge']
-            dic['studentGender'] = res1[i]['studentGender']
-            if len(res1) > 0:
-                dic['Without Visualization'] = res1[i]['SUM(time_to_answer)']
-            if len(res2) > 0:
-                dic['Gradual Highlight'] = res2[i]['SUM(time_to_answer)']
-            if len(res3) > 0:
-                dic['Highlight'] = res3[i]['SUM(time_to_answer)']
-            if len(res4) > 0:
-                dic['Increased Font'] = res4[i]['SUM(time_to_answer)']
-            if len(res5) > 0:
-                dic['Gradual Font'] = res5[i]['SUM(time_to_answer)']
-            if len(res6) > 0:
-                dic['Summary Only'] = res6[i]['SUM(time_to_answer)']
+            dic['studentID'] = res_set1_1[i]['studentID']
+            dic['studentAge'] = res_set1_1[i]['studentAge']
+            dic['studentGender'] = res_set1_1[i]['studentGender']
+            if len(res_set1_1) > 0:
+                dic['Without Visualization_set1'] = res_set1_1[i]['SUM(time_to_answer)']
+            if len(res_set2_1) > 0:
+                dic['Without Visualization_set2'] = res_set2_1[i]['SUM(time_to_answer)']
+            if len(res_set3_1) > 0:
+                dic['Without Visualization_set3'] = res_set3_1[i]['SUM(time_to_answer)']
+            if len(res_set1_2) > 0:
+                dic['Gradual Highlight_set1'] = res_set1_2[i]['SUM(time_to_answer)']
+            if len(res_set2_2) > 0:
+                dic['Gradual Highlight_set2'] = res_set2_2[i]['SUM(time_to_answer)']
+            if len(res_set3_2) > 0:
+                dic['Gradual Highlight_set3'] = res_set3_2[i]['SUM(time_to_answer)']
+            if len(res_set1_3) > 0:
+                dic['Highlight_set1'] = res_set1_3[i]['SUM(time_to_answer)']
+            if len(res_set2_3) > 0:
+                dic['Highlight_set2'] = res_set2_3[i]['SUM(time_to_answer)']
+            if len(res_set3_3) > 0:
+                dic['Highlight_set3'] = res_set3_3[i]['SUM(time_to_answer)']
+            if len(res_set1_4) > 0:
+                dic['Increased Font_set1'] = res_set1_4[i]['SUM(time_to_answer)']
+            if len(res_set2_4) > 0:
+                dic['Increased Font_set2'] = res_set2_4[i]['SUM(time_to_answer)']
+            if len(res_set3_4) > 0:
+                dic['Increased Font_set3'] = res_set3_4[i]['SUM(time_to_answer)']
+            if len(res_set1_5) > 0:
+                dic['Gradual Font_set1'] = res_set1_5[i]['SUM(time_to_answer)']
+            if len(res_set2_5) > 0:
+                dic['Gradual Font_set2'] = res_set2_5[i]['SUM(time_to_answer)']
+            if len(res_set3_5) > 0:
+                dic['Gradual Font_set3'] = res_set3_5[i]['SUM(time_to_answer)']
+            if len(res_set1_6) > 0:
+                dic['Summary Only_set1'] = res_set1_6[i]['SUM(time_to_answer)']
+            if len(res_set2_6) > 0:
+                dic['Summary Only_set2'] = res_set2_6[i]['SUM(time_to_answer)']
+            if len(res_set3_6) > 0:
+                dic['Summary Only_set3'] = res_set3_6[i]['SUM(time_to_answer)']
             res.append(dic)
-        print(res)
+        # print(res)
         return res
 
 @app.get("/countResults/{test_name}")
 def get_answer_by_test_name_COUNT(test_name: str):
     res = []
     if test_name != None:
-        res1 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "WithoutVisualization")
-        res2 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "GradualHighlight")
-        res3 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "Highlight")
-        res4 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "IncreasedFont")
-        res5 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "GradualFont")
-        res6 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "SummaryOnly")
-        for i in range(len(res1)):
+        res_set1_1 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "WithoutVisualization", 1)
+        res_set1_2 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "GradualHighlight", 1)
+        res_set1_3 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "Highlight", 1)
+        res_set1_4 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "IncreasedFont", 1)
+        res_set1_5 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "GradualFont", 1)
+        res_set1_6 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "SummaryOnly", 1)
+        res_set2_1 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "WithoutVisualization", 2)
+        res_set2_2 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "GradualHighlight", 2)
+        res_set2_3 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "Highlight", 2)
+        res_set2_4 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "IncreasedFont", 2)
+        res_set2_5 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "GradualFont", 2)
+        res_set2_6 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "SummaryOnly", 2)
+        res_set3_1 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "WithoutVisualization", 3)
+        res_set3_2 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "GradualHighlight", 3)
+        res_set3_3 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "Highlight", 3)
+        res_set3_4 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "IncreasedFont", 3)
+        res_set3_5 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "GradualFont", 3)
+        res_set3_6 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "SummaryOnly", 3)
+        # for i in range(len(res_set1_1)or len(res_set1_2)or len(res_set1_3)or len(res_set1_4)or len(res_set1_5)or len(res_set1_6)or len(res_set2_1)or len(res_set2_2)or len(res_set2_3)or len(res_set2_4)or len(res_set2_5)or len(res_set2_6)or len(res_set3_1)or len(res_set3_2)or len(res_set3_3)or len(res_set3_4)or len(res_set3_5)or len(res_set3_6)):
+        res_len= StudentAnswersRepository.correct_answers_count("\'" + test_name + "\'")
+        for i in range(res_len[0]['COUNT(is_correct)']):
             dic = {}
-            dic['studentID'] = res1[i]['studentID']
-            dic['studentAge'] = res1[i]['studentAge']
-            dic['studentGender'] = res1[i]['studentGender']
-            if len(res1) > 0:
-                dic['Without Visualization'] = res1[i]['COUNT(is_correct)*1.25']
-            elif len(res2) > 0:
-                dic['Gradual Highlight'] = res2[i]['COUNT(is_correct)*1.25']
-            elif len(res3) > 0:
-                dic['Highlight'] = res3[i]['COUNT(is_correct)*1.25']
-            elif len(res4) > 0:
-                dic['Increased Font'] = res4[i]['COUNT(is_correct)*1.25']
-            elif len(res5) > 0:
-                dic['Gradual Font'] = res5[i]['COUNT(is_correct)*1.25']
-            elif len(res6) > 0:
-                dic['Summary Only'] = res6[i]['COUNT(is_correct)*1.25']
+            if len(res_set1_1) > 0 and i<len(res_set1_1):
+                dic['studentID'] = res_set1_1[i]['studentID']
+                dic['studentAge'] = res_set1_1[i]['studentAge']
+                dic['studentGender'] = res_set1_1[i]['studentGender']
+                dic['Without Visualization_set1'] = res_set1_1[i]['COUNT(is_correct)*1.25']
+            if len(res_set2_1) > 0 and i<len(res_set2_1):
+                dic['studentID'] = res_set2_1[i]['studentID']
+                dic['studentAge'] = res_set2_1[i]['studentAge']
+                dic['studentGender'] = res_set2_1[i]['studentGender']
+                dic['Without Visualization_set2'] = res_set2_1[i]['COUNT(is_correct)*1.25']
+            if len(res_set3_1) > 0 and i<len(res_set3_1):
+                dic['studentID'] = res_set3_1[i]['studentID']
+                dic['studentAge'] = res_set3_1[i]['studentAge']
+                dic['studentGender'] = res_set3_1[i]['studentGender']
+                dic['Without Visualization_set3'] = res_set3_1[i]['COUNT(is_correct)*1.25']
+            if len(res_set1_2) > 0 and i<len(res_set1_2):
+                dic['studentID'] = res_set1_2[i]['studentID']
+                dic['studentAge'] = res_set1_2[i]['studentAge']
+                dic['studentGender'] = res_set1_2[i]['studentGender']
+                dic['Gradual Highlight_set1'] = res_set1_2[i]['COUNT(is_correct)*1.25']
+            if len(res_set2_2) > 0 and i<len(res_set2_2):
+                dic['studentID'] = res_set2_2[i]['studentID']
+                dic['studentAge'] = res_set2_2[i]['studentAge']
+                dic['studentGender'] = res_set2_2[i]['studentGender']
+                dic['Gradual Highlight_set2'] = res_set2_2[i]['COUNT(is_correct)*1.25']
+            if len(res_set3_2) > 0 and i<len(res_set3_2):
+                dic['studentID'] = res_set3_2[i]['studentID']
+                dic['studentAge'] = res_set3_2[i]['studentAge']
+                dic['studentGender'] = res_set3_2[i]['studentGender']
+                dic['Gradual Highlight_set3'] = res_set3_2[i]['COUNT(is_correct)*1.25']
+            if len(res_set1_3) > 0 and i<len(res_set1_3):
+                dic['studentID'] = res_set1_3[i]['studentID']
+                dic['studentAge'] = res_set1_3[i]['studentAge']
+                dic['studentGender'] = res_set1_3[i]['studentGender']
+                dic['Highlight_set1'] = res_set1_3[i]['COUNT(is_correct)*1.25']
+            if len(res_set2_3) > 0 and i<len(res_set2_3):
+                dic['studentID'] = res_set2_3[i]['studentID']
+                dic['studentAge'] = res_set2_3[i]['studentAge']
+                dic['studentGender'] = res_set2_3[i]['studentGender']
+                dic['Highlight_set2'] = res_set2_3[i]['COUNT(is_correct)*1.25']
+            if len(res_set3_3) > 0 and i<len(res_set3_3):
+                dic['studentID'] = res_set3_3[i]['studentID']
+                dic['studentAge'] = res_set3_3[i]['studentAge']
+                dic['studentGender'] = res_set3_3[i]['studentGender']
+                dic['Highlight_set3'] = res_set3_3[i]['COUNT(is_correct)*1.25']
+            if len(res_set1_4) > 0 and i<len(res_set1_4):
+                dic['studentID'] = res_set1_4[i]['studentID']
+                dic['studentAge'] = res_set1_4[i]['studentAge']
+                dic['studentGender'] = res_set1_4[i]['studentGender']
+                dic['Increased Font_set1'] = res_set1_4[i]['COUNT(is_correct)*1.25']
+            if len(res_set2_4) > 0 and i<len(res_set2_4):
+                dic['studentID'] = res_set2_4[i]['studentID']
+                dic['studentAge'] = res_set2_4[i]['studentAge']
+                dic['studentGender'] = res_set2_4[i]['studentGender']
+                dic['Increased Font_set2'] = res_set2_4[i]['COUNT(is_correct)*1.25']
+            if len(res_set3_4) > 0 and i<len(res_set3_4):
+                dic['studentID'] = res_set3_4[i]['studentID']
+                dic['studentAge'] = res_set3_4[i]['studentAge']
+                dic['studentGender'] = res_set3_4[i]['studentGender']
+                dic['Increased Font_set3'] = res_set3_4[i]['COUNT(is_correct)*1.25']
+            if len(res_set1_5) > 0 and i<len(res_set1_5):
+                dic['studentID'] = res_set1_5[i]['studentID']
+                dic['studentAge'] = res_set1_5[i]['studentAge']
+                dic['studentGender'] = res_set1_5[i]['studentGender']
+                dic['Gradual Font_set1'] = res_set1_5[i]['COUNT(is_correct)*1.25']
+            if len(res_set2_5) > 0 and i<len(res_set2_5):
+                dic['studentID'] = res_set2_5[i]['studentID']
+                dic['studentAge'] = res_set2_5[i]['studentAge']
+                dic['studentGender'] = res_set2_5[i]['studentGender']
+                dic['Gradual Font_set2'] = res_set2_5[i]['COUNT(is_correct)*1.25']
+            if len(res_set3_5) > 0 and i<len(res_set3_5):
+                dic['studentID'] = res_set3_5[i]['studentID']
+                dic['studentAge'] = res_set3_5[i]['studentAge']
+                dic['studentGender'] = res_set3_5[i]['studentGender']
+                dic['Gradual Font_set3'] = res_set3_5[i]['COUNT(is_correct)*1.25']
+            if len(res_set1_6) > 0 and i<len(res_set1_6):
+                dic['studentID'] = res_set1_6[i]['studentID']
+                dic['studentAge'] = res_set1_6[i]['studentAge']
+                dic['studentGender'] = res_set1_6[i]['studentGender']
+                dic['Summary Only_set1'] = res_set1_6[i]['COUNT(is_correct)*1.25']
+            if len(res_set2_6) > 0 and i<len(res_set2_6):
+                dic['studentID'] = res_set2_6[i]['studentID']
+                dic['studentAge'] = res_set2_6[i]['studentAge']
+                dic['studentGender'] = res_set2_6[i]['studentGender']
+                dic['Summary Only_set2'] = res_set2_6[i]['COUNT(is_correct)*1.25']
+            if len(res_set3_6) > 0 and i<len(res_set3_6):
+                dic['studentID'] = res_set3_6[i]['studentID']
+                dic['studentAge'] = res_set3_6[i]['studentAge']
+                dic['studentGender'] = res_set3_6[i]['studentGender']
+                dic['Summary Only_set3'] = res_set3_6[i]['COUNT(is_correct)*1.25']
             res.append(dic)
+        print(res)
         return res
+
+
+
 
 @app.get("/avgResults/{test_name}")
 def get_answer_by_test_name_AVG(test_name: str):
     res = []
-    if test_name != None:
-        res1 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "WithoutVisualization")
-        res2 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "GradualHighlight")
-        res3 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "Highlight")
-        res4 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "IncreasedFont")
-        res5 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "GradualFont")
-        res6 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "SummaryOnly")
-        for i in range(len(res1)):
-            dic = {}
-            dic['studentID'] = res1[i]['studentID']
-            dic['studentAge'] = res1[i]['studentAge']
-            dic['studentGender'] = res1[i]['studentGender']
-            if len(res1) > 0:
-                dic['Without Visualization'] = res1[i]['AVG(time_to_answer)']
-            elif len(res2) > 0:
-                dic['Gradual Highlight'] = res2[i]['AVG(time_to_answer)']
-            elif len(res3) > 0:
-                dic['Highlight'] = res3[i]['AVG(time_to_answer)']
-            elif len(res4) > 0:
-                dic['Increased Font'] = res4[i]['AVG(time_to_answer)']
-            elif len(res5) > 0:
-                dic['Gradual Font'] = res5[i]['AVG(time_to_answer)']
-            elif len(res6) > 0:
-                dic['Summary Only'] = res6[i]['AVG(time_to_answer)']
+    if test_name != None :
+        res_set1_1 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "WithoutVisualization", 1)
+        res_set1_2 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "GradualHighlight", 1)
+        res_set1_3 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "Highlight", 1)
+        res_set1_4 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "IncreasedFont", 1)
+        res_set1_5 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "GradualFont", 1)
+        res_set1_6 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "SummaryOnly", 1)
+        res_set2_1 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "WithoutVisualization", 2)
+        res_set2_2 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "GradualHighlight", 2)
+        res_set2_3 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "Highlight", 2)
+        res_set2_4 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "IncreasedFont", 2)
+        res_set2_5 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "GradualFont", 2)
+        res_set2_6 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "SummaryOnly", 2)
+        res_set3_1 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "WithoutVisualization", 3)
+        res_set3_2 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "GradualHighlight", 3)
+        res_set3_3 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "Highlight", 3)
+        res_set3_4 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "IncreasedFont", 3)
+        res_set3_5 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "GradualFont", 3)
+        res_set3_6 = StudentAnswersRepository.get_answer_by_test_name_AVG("\'" + test_name + "\'", "SummaryOnly", 3)
+        for i in range(len(res_set1_1)):
+            dic={}
+            dic['studentID'] = res_set1_1[i]['studentID']
+            dic['studentAge'] = res_set1_1[i]['studentAge']
+            dic['studentGender'] = res_set1_1[i]['studentGender']
+            if len(res_set1_1) > 0:
+                dic['Without Visualization_set1'] = res_set1_1[i]['AVG(time_to_answer)']
+            if len(res_set2_1) > 0:
+                dic['Without Visualization_set2'] = res_set2_1[i]['AVG(time_to_answer)']
+            if len(res_set3_1) > 0:
+                dic['Without Visualization_set3'] = res_set3_1[i]['AVG(time_to_answer)']
+            if len(res_set1_2) > 0:
+                dic['Gradual Highlight_set1'] = res_set1_2[i]['AVG(time_to_answer)']
+            if len(res_set2_2) > 0:
+                dic['Gradual Highlight_set2'] = res_set2_2[i]['AVG(time_to_answer)']
+            if len(res_set3_2) > 0:
+                dic['Gradual Highlight_set3'] = res_set3_2[i]['AVG(time_to_answer)']
+            if len(res_set1_3) > 0:
+                dic['Highlight_set1'] = res_set1_3[i]['AVG(time_to_answer)']
+            if len(res_set2_3) > 0:
+                dic['Highlight_set2'] = res_set2_3[i]['AVG(time_to_answer)']
+            if len(res_set3_3) > 0:
+                dic['Highlight_set3'] = res_set3_3[i]['AVG(time_to_answer)']
+            if len(res_set1_4) > 0:
+                dic['Increased Font_set1'] = res_set1_4[i]['AVG(time_to_answer)']
+            if len(res_set2_4) > 0:
+                dic['Increased Font_set2'] = res_set2_4[i]['AVG(time_to_answer)']
+            if len(res_set3_4) > 0:
+                dic['Increased Font_set3'] = res_set3_4[i]['AVG(time_to_answer)']
+            if len(res_set1_5) > 0:
+                dic['Gradual Font_set1'] = res_set1_5[i]['AVG(time_to_answer)']
+            if len(res_set2_5) > 0:
+                dic['Gradual Font_set2'] = res_set2_5[i]['AVG(time_to_answer)']
+            if len(res_set3_5) > 0:
+                dic['Gradual Font_set3'] = res_set3_5[i]['AVG(time_to_answer)']
+            if len(res_set1_6) > 0:
+                dic['Summary Only_set1'] = res_set1_6[i]['AVG(time_to_answer)']
+            if len(res_set2_6) > 0:
+                dic['Summary Only_set2'] = res_set2_6[i]['AVG(time_to_answer)']
+            if len(res_set3_6) > 0:
+                dic['Summary Only_set3'] = res_set3_6[i]['AVG(time_to_answer)']
             res.append(dic)
+        print(res)
         return res
+
+@app.get("/readingResults/{test_name}")
+def get_answer_by_test_name_reading_timee(test_name: str):
+    res = []
+    if test_name != None :
+        res_set1_1 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "WithoutVisualization", 1)
+        res_set1_2 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "GradualHighlight", 1)
+        res_set1_3 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "Highlight", 1)
+        res_set1_4 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "IncreasedFont", 1)
+        res_set1_5 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "GradualFont", 1)
+        res_set1_6 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "SummaryOnly", 1)
+        res_set2_1 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "WithoutVisualization", 2)
+        res_set2_2 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "GradualHighlight", 2)
+        res_set2_3 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "Highlight", 2)
+        res_set2_4 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "IncreasedFont", 2)
+        res_set2_5 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "GradualFont", 2)
+        res_set2_6 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "SummaryOnly", 2)
+        res_set3_1 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "WithoutVisualization", 3)
+        res_set3_2 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "GradualHighlight", 3)
+        res_set3_3 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "Highlight", 3)
+        res_set3_4 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "IncreasedFont", 3)
+        res_set3_5 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "GradualFont", 3)
+        res_set3_6 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "SummaryOnly", 3)
+        print(res_set1_1)
+        for i in range(len(res_set1_1)):
+            dic={}
+            dic['studentID'] = res_set1_1[i]['studentID']
+            dic['studentAge'] = res_set1_1[i]['studentAge']
+            dic['studentGender'] = res_set1_1[i]['studentGender']
+            if len(res_set1_1) > 0 and i<len(res_set1_1):
+                dic['Without Visualization_set1'] = res_set1_1[i]['ReadingTime']
+            if len(res_set2_1) > 0 and i<len(res_set2_1):
+                dic['Without Visualization_set2'] = res_set2_1[i]['ReadingTime']
+            if len(res_set3_1) > 0 and i<len(res_set3_1):
+                dic['Without Visualization_set3'] = res_set3_1[i]['ReadingTime']
+            if len(res_set1_2) > 0 and i<len(res_set1_2):
+                dic['Gradual Highlight_set1'] = res_set1_2[i]['ReadingTime']
+            if len(res_set2_2) > 0 and i<len(res_set2_2):
+                dic['Gradual Highlight_set2'] = res_set2_2[i]['ReadingTime']
+            if len(res_set3_2) > 0 and i<len(res_set3_2):
+                dic['Gradual Highlight_set3'] = res_set3_2[i]['ReadingTime']
+            if len(res_set1_3) > 0 and i<len(res_set1_3):
+                dic['Highlight_set1'] = res_set1_3[i]['ReadingTime']
+            if len(res_set2_3) > 0 and i<len(res_set2_3):
+                dic['Highlight_set2'] = res_set2_3[i]['ReadingTime']
+            if len(res_set3_3) > 0 and i<len(res_set3_3):
+                dic['Highlight_set3'] = res_set3_3[i]['ReadingTime']
+            if len(res_set1_4) > 0 and i<len(res_set1_4):
+                dic['Increased Font_set1'] = res_set1_4[i]['ReadingTime']
+            if len(res_set2_4) > 0 and i<len(res_set2_4):
+                dic['Increased Font_set2'] = res_set2_4[i]['ReadingTime']
+            if len(res_set3_4) > 0 and i<len(res_set3_4):
+                dic['Increased Font_set3'] = res_set3_4[i]['ReadingTime']
+            if len(res_set1_5) > 0 and i<len(res_set1_5):
+                dic['Gradual Font_set1'] = res_set1_5[i]['ReadingTime']
+            if len(res_set2_5) > 0 and i<len(res_set2_5):
+                dic['Gradual Font_set2'] = res_set2_5[i]['ReadingTime']
+            if len(res_set3_5) > 0 and i<len(res_set3_5):
+                dic['Gradual Font_set3'] = res_set3_5[i]['ReadingTime']
+            if len(res_set1_6) > 0 and i<len(res_set1_6):
+                dic['Summary Only_set1'] = res_set1_6[i]['ReadingTime']
+            if len(res_set2_6) > 0 and i<len(res_set2_6):
+                dic['Summary Only_set2'] = res_set2_6[i]['ReadingTime']
+            if len(res_set3_6) > 0 and i<len(res_set3_6):
+                dic['Summary Only_set3'] = res_set3_6[i]['ReadingTime']
+            res.append(dic)
+        print(res)
+        return res
+
 
 @app.get("/rankingResult/{test_name}")
 def get_placing_by_test_name(test_name: str):
     if(test_name != None ):
         return StudentAnswersRepository.get_placing_by_test_name("\'"+test_name+"\'")
-
 
 @app.post("/rank")
 def add_rank(rank_info: RankCreate):
