@@ -1,4 +1,5 @@
 import random
+import json
 
 from model.concrete import TextConcrete
 
@@ -109,7 +110,24 @@ def get_all_id_texts():
         ans.append(text["id"])
     return ans
 
+def get_text_weight(id):
 
+    ans=[]
+    # print("id -> ", id)
+    arr= TextConcrete.get_text_weight(id)[0][ "sentences_weight"][2:-3].split("}, {")
+    for i in range(0,len(arr)):
+        s = '{'+arr[i]+'}'
+        ans.append(eval(s))
+
+    name = TextConcrete.get_text_name(id)
+    ans_dic = {
+        "sentences":ans,
+        "name": name[0]["name"]
+    }
+    arr_ans=[]
+    arr_ans.append(ans_dic)
+
+    return  arr_ans
 # def get_visualization_id(type):
 #         if type == "Without Visualization":
 #             return 0

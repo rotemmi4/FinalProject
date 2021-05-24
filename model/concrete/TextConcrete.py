@@ -29,3 +29,12 @@ def get_texts():
 def get_all_id_texts():
     query = TextDAO.get_all_id_texts()
     return sqlliteDButils.execute_select(query)
+
+def get_text_weight(id):
+    query = TextDAO.get_text_weight(id)
+    return sqlliteDButils.execute_select(query)
+
+
+def get_text_name(id):
+    query = TextDAO.get_text_name(id)
+    return sqlliteDButils.execute_select(query)

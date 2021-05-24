@@ -342,14 +342,21 @@ def get_texts_by_test_id(text_id: int):
 def get_text_total_info(text_id: int):
 
     text = TextRepository.get_text_by_id(text_id)
+    # print("text -> ", text)
     response = {}
     if text:
-        response = RandomAlgorithem.getWeights(text[0], 'random')
+        # response = RandomAlgorithem.getWeights(text[0], 'random')
+        response = TextRepository.get_text_weight(text_id)
+        # print("response -> ",response)
 #         response = AlgorithemFactory.get('random').getWeight(text[0])
     arrResponse = []
     if response:
         arrResponse.append(response)
     text_type = get_texts_by_test_id(text_id)
+    # print("arrResponse -> ", arrResponse)
+    arrResponse = arrResponse[0]
+    # print("arrResponse -> ", arrResponse)
+    # print("text_type -> ", text_type)
     arrResponse[0]["type"] = text_type
     # print(text_type)
     return arrResponse
@@ -729,6 +736,7 @@ def getTestProperties(test_info: str):
     for text in data:
         # we will change how we get the text sentence with weights!
         text_info = get_text_total_info(int(text['text_id']))
+        # print(text_info)
         text['type'] = convert_visualization_ids_to_types(text['visualiztion_id'])
         text['sentences'] = text_info[0]['sentences']
         if text['set_num'] == 1:
@@ -743,6 +751,8 @@ def getTestProperties(test_info: str):
     random.shuffle(first_set)
     random.shuffle(second_set)
     random.shuffle(third_set)
+
+    # print("first set -<")
 
     if set_place == "before":
         return first_set + second_set
@@ -775,6 +785,14 @@ def convert_visualization_ids_to_types(id):
         return "Summary Only"
     else:
         return "Highlight"
+
+
+
+@app.get("/text_weight/{id}")
+def Text_weight(id: int):
+    return TextRepository.get_text_weight(id)
+
+
 
 uvicorn.run(app, host="localhost", port=5000)
 # @app.delete("/texts/{id}")
