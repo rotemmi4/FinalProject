@@ -834,15 +834,24 @@ def getTestProperties(test_info: str):
         elif text['set_num'] == 2:
             second_set.append(text)
         else:
+            max_value = 0.0
+            min_value = 1.0
             for sentence in text['sentences']:
-                sentence["weight"] = str(1 - float(sentence["weight"]))
+                if float(sentence["weight"]) < min_value:
+                    min_value = float(sentence["weight"])
+                if float(sentence["weight"]) > max_value:
+                    max_value = float(sentence["weight"])
+
+            for sentence in text['sentences']:
+                if float(sentence["weight"]) == min_value:
+                    sentence["weight"] = str(max_value)
+                if float(sentence["weight"]) == max_value:
+                    sentence["weight"] = str(min_value)
             third_set.append(text)
 
     random.shuffle(first_set)
     random.shuffle(second_set)
     random.shuffle(third_set)
-
-    # print("first set -<")
 
     if set_place == "before":
         return first_set + second_set
