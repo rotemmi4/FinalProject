@@ -14,15 +14,14 @@ def get_placing_by_test_name(test_name):
      INNER JOIN StudentInfo on StudentRank.student_id = StudentInfo.studentID 
      WHERE test_name={} GROUP BY StudentInfo.studentID """.format(test_name))
 
-
 def get_answer_by_test_name_COUNT(testName, visualization, set_num):
-    return ("""SELECT StudentInfo.studentID, name, studentAge, studentGender, visualiztions.type, COUNT(is_correct)*2.5
+    return ("""SELECT StudentInfo.studentID, name, studentAge, studentGender, visualiztions.type, SUM(is_correct)
      FROM StudentAnswers
      INNER JOIN StudentInfo on StudentAnswers.studentID = StudentInfo.studentID 
      INNER JOIN questions on questions.question_id = StudentAnswers.question_id 
      INNER JOIN visualiztion_properties on visualiztion_properties.text_id = questions.text_id 
      INNER JOIN visualiztions on visualiztion_properties.visualiztion_id = visualiztions.id 
-     WHERE test_name={} AND visualiztions.type= {} AND visualiztion_properties.set_num={} AND StudentAnswers.is_correct=1 GROUP BY StudentInfo.studentID """.format(testName, "\'" + visualization + "\'", set_num))
+     WHERE test_name={} AND visualiztions.type= {} AND visualiztion_properties.set_num={}  GROUP BY StudentInfo.studentID """.format(testName, "\'" + visualization + "\'", set_num))
 
 def get_answer_by_test_name_AVG(testName, visualization, set_num):
     return ("""SELECT StudentInfo.studentID, name, studentAge, studentGender, visualiztions.type, is_correct, AVG(time_to_answer)
@@ -45,3 +44,8 @@ def get_answer_by_test_name_reading_time(testName, visualization, set_num):
      INNER JOIN visualiztions on visualiztion_properties.visualiztion_id = visualiztions.id 
      WHERE test_id={} AND visualiztions.type= {} AND visualiztion_properties.set_num={} GROUP BY StudentInfo.studentID """.format(testName, "\'" + visualization + "\'", set_num))
 
+def get_student_details(testName):
+    return ("""SELECT StudentInfo.studentID, name, studentAge, studentGender
+     FROM StudentAnswers
+     INNER JOIN StudentInfo on StudentAnswers.studentID = StudentInfo.studentID 
+     WHERE test_name={} GROUP BY StudentInfo.studentID """.format(testName))

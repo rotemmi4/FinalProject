@@ -25,3 +25,7 @@ def correct_answers_count(testName):
 def get_answer_by_test_name_reading_time(testName, visualization, set_num):
     query = StudentAnswersDAO.get_answer_by_test_name_reading_time(testName, visualization, set_num)
     return sqlliteDButils.execute_select(query)
+
+def get_student_details(testName):
+    query = StudentAnswersDAO.get_student_details(testName)
+    return sqlliteDButils.execute_select(query)

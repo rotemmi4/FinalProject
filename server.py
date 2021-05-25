@@ -426,7 +426,6 @@ def get_answer_by_test_name_SUM(test_name: str):
             if len(res_set3_6) > 0:
                 dic['Summary Only_set3'] = res_set3_6[i]['SUM(time_to_answer)']
             res.append(dic)
-        # print(res)
         return res
 
 @app.get("/countResults/{test_name}")
@@ -451,123 +450,50 @@ def get_answer_by_test_name_COUNT(test_name: str):
         res_set3_4 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "IncreasedFont", 3)
         res_set3_5 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "GradualFont", 3)
         res_set3_6 = StudentAnswersRepository.get_answer_by_test_name_COUNT("\'" + test_name + "\'", "SummaryOnly", 3)
-        # for i in range(len(res_set1_1)or len(res_set1_2)or len(res_set1_3)or len(res_set1_4)or len(res_set1_5)or len(res_set1_6)or len(res_set2_1)or len(res_set2_2)or len(res_set2_3)or len(res_set2_4)or len(res_set2_5)or len(res_set2_6)or len(res_set3_1)or len(res_set3_2)or len(res_set3_3)or len(res_set3_4)or len(res_set3_5)or len(res_set3_6)):
-        res_len= StudentAnswersRepository.correct_answers_count("\'" + test_name + "\'")
-        for i in range(res_len[0]['COUNT(is_correct)']):
+        for i in range(len(res_set1_1)):
             dic = {}
+            dic['studentID'] = res_set1_1[i]['studentID']
+            dic['name'] = res_set1_1[i]['name']
+            dic['studentAge'] = res_set1_1[i]['studentAge']
+            dic['studentGender'] = res_set1_1[i]['studentGender']
             if len(res_set1_1) > 0 and i<len(res_set1_1):
-                dic['studentID'] = res_set1_1[i]['studentID']
-                dic['name'] = res_set1_1[i]['name']
-                dic['studentAge'] = res_set1_1[i]['studentAge']
-                dic['studentGender'] = res_set1_1[i]['studentGender']
-                dic['Without Visualization_set1'] = res_set1_1[i]['COUNT(is_correct)*2.5']
+                dic['Without Visualization_set1'] = res_set1_1[i]['SUM(is_correct)']*2.5
             if len(res_set2_1) > 0 and i<len(res_set2_1):
-                dic['studentID'] = res_set2_1[i]['studentID']
-                dic['name'] = res_set2_1[i]['name']
-                dic['studentAge'] = res_set2_1[i]['studentAge']
-                dic['studentGender'] = res_set2_1[i]['studentGender']
-                dic['Without Visualization_set2'] = res_set2_1[i]['COUNT(is_correct)*2.5']
+                dic['Without Visualization_set2'] = res_set2_1[i]['SUM(is_correct)']*2.5
             if len(res_set3_1) > 0 and i<len(res_set3_1):
-                dic['studentID'] = res_set3_1[i]['studentID']
-                dic['name'] = res_set3_1[i]['name']
-                dic['studentAge'] = res_set3_1[i]['studentAge']
-                dic['studentGender'] = res_set3_1[i]['studentGender']
-                dic['Without Visualization_set3'] = res_set3_1[i]['COUNT(is_correct)*2.5']
+                dic['Without Visualization_set3'] = res_set3_1[i]['SUM(is_correct)']*2.5
             if len(res_set1_2) > 0 and i<len(res_set1_2):
-                dic['studentID'] = res_set1_2[i]['studentID']
-                dic['name'] = res_set1_2[i]['name']
-                dic['studentAge'] = res_set1_2[i]['studentAge']
-                dic['studentGender'] = res_set1_2[i]['studentGender']
-                dic['Gradual Highlight_set1'] = res_set1_2[i]['COUNT(is_correct)*2.5']
+                dic['Gradual Highlight_set1'] = res_set1_2[i]['SUM(is_correct)']*2.5
             if len(res_set2_2) > 0 and i<len(res_set2_2):
-                dic['studentID'] = res_set2_2[i]['studentID']
-                dic['name'] = res_set2_2[i]['name']
-                dic['studentAge'] = res_set2_2[i]['studentAge']
-                dic['studentGender'] = res_set2_2[i]['studentGender']
-                dic['Gradual Highlight_set2'] = res_set2_2[i]['COUNT(is_correct)*2.5']
+                dic['Gradual Highlight_set2'] = res_set2_2[i]['SUM(is_correct)']*2.5
             if len(res_set3_2) > 0 and i<len(res_set3_2):
-                dic['studentID'] = res_set3_2[i]['studentID']
-                dic['name'] = res_set3_2[i]['name']
-                dic['studentAge'] = res_set3_2[i]['studentAge']
-                dic['studentGender'] = res_set3_2[i]['studentGender']
-                dic['Gradual Highlight_set3'] = res_set3_2[i]['COUNT(is_correct)*2.5']
+                dic['Gradual Highlight_set3'] = res_set3_2[i]['SUM(is_correct)']*2.5
             if len(res_set1_3) > 0 and i<len(res_set1_3):
-                dic['studentID'] = res_set1_3[i]['studentID']
-                dic['name'] = res_set1_3[i]['name']
-                dic['studentAge'] = res_set1_3[i]['studentAge']
-                dic['studentGender'] = res_set1_3[i]['studentGender']
-                dic['Highlight_set1'] = res_set1_3[i]['COUNT(is_correct)*2.5']
+                dic['Highlight_set1'] = res_set1_3[i]['SUM(is_correct)']*2.5
             if len(res_set2_3) > 0 and i<len(res_set2_3):
-                dic['studentID'] = res_set2_3[i]['studentID']
-                dic['name'] = res_set2_3[i]['name']
-                dic['studentAge'] = res_set2_3[i]['studentAge']
-                dic['studentGender'] = res_set2_3[i]['studentGender']
-                dic['Highlight_set2'] = res_set2_3[i]['COUNT(is_correct)*2.5']
+                dic['Highlight_set2'] = res_set2_3[i]['SUM(is_correct)']*2.5
             if len(res_set3_3) > 0 and i<len(res_set3_3):
-                dic['studentID'] = res_set3_3[i]['studentID']
-                dic['name'] = res_set3_3[i]['name']
-                dic['studentAge'] = res_set3_3[i]['studentAge']
-                dic['studentGender'] = res_set3_3[i]['studentGender']
-                dic['Highlight_set3'] = res_set3_3[i]['COUNT(is_correct)*2.5']
+                dic['Highlight_set3'] = res_set3_3[i]['SUM(is_correct)']*2.5
             if len(res_set1_4) > 0 and i<len(res_set1_4):
-                dic['studentID'] = res_set1_4[i]['studentID']
-                dic['name'] = res_set1_4[i]['name']
-                dic['studentAge'] = res_set1_4[i]['studentAge']
-                dic['studentGender'] = res_set1_4[i]['studentGender']
-                dic['Increased Font_set1'] = res_set1_4[i]['COUNT(is_correct)*2.5']
+                dic['Increased Font_set1'] = res_set1_4[i]['SUM(is_correct)']*2.5
             if len(res_set2_4) > 0 and i<len(res_set2_4):
-                dic['studentID'] = res_set2_4[i]['studentID']
-                dic['name'] = res_set2_4[i]['name']
-                dic['studentAge'] = res_set2_4[i]['studentAge']
-                dic['studentGender'] = res_set2_4[i]['studentGender']
-                dic['Increased Font_set2'] = res_set2_4[i]['COUNT(is_correct)*2.5']
+                dic['Increased Font_set2'] = res_set2_4[i]['SUM(is_correct)']*2.5
             if len(res_set3_4) > 0 and i<len(res_set3_4):
-                dic['studentID'] = res_set3_4[i]['studentID']
-                dic['name'] = res_set3_4[i]['name']
-                dic['studentAge'] = res_set3_4[i]['studentAge']
-                dic['studentGender'] = res_set3_4[i]['studentGender']
-                dic['Increased Font_set3'] = res_set3_4[i]['COUNT(is_correct)*2.5']
+                dic['Increased Font_set3'] = res_set3_4[i]['SUM(is_correct)']*2.5
             if len(res_set1_5) > 0 and i<len(res_set1_5):
-                dic['studentID'] = res_set1_5[i]['studentID']
-                dic['name'] = res_set1_5[i]['name']
-                dic['studentAge'] = res_set1_5[i]['studentAge']
-                dic['studentGender'] = res_set1_5[i]['studentGender']
-                dic['Gradual Font_set1'] = res_set1_5[i]['COUNT(is_correct)*2.5']
+                dic['Gradual Font_set1'] = res_set1_5[i]['SUM(is_correct)']*2.5
             if len(res_set2_5) > 0 and i<len(res_set2_5):
-                dic['studentID'] = res_set2_5[i]['studentID']
-                dic['name'] = res_set2_5[i]['name']
-                dic['studentAge'] = res_set2_5[i]['studentAge']
-                dic['studentGender'] = res_set2_5[i]['studentGender']
-                dic['Gradual Font_set2'] = res_set2_5[i]['COUNT(is_correct)*2.5']
+                dic['Gradual Font_set2'] = res_set2_5[i]['SUM(is_correct)']*2.5
             if len(res_set3_5) > 0 and i<len(res_set3_5):
-                dic['studentID'] = res_set3_5[i]['studentID']
-                dic['name'] = res_set3_5[i]['name']
-                dic['studentAge'] = res_set3_5[i]['studentAge']
-                dic['studentGender'] = res_set3_5[i]['studentGender']
-                dic['Gradual Font_set3'] = res_set3_5[i]['COUNT(is_correct)*2.5']
+                dic['Gradual Font_set3'] = res_set3_5[i]['SUM(is_correct)']*2.5
             if len(res_set1_6) > 0 and i<len(res_set1_6):
-                dic['studentID'] = res_set1_6[i]['studentID']
-                dic['name'] = res_set1_6[i]['name']
-                dic['studentAge'] = res_set1_6[i]['studentAge']
-                dic['studentGender'] = res_set1_6[i]['studentGender']
-                dic['Summary Only_set1'] = res_set1_6[i]['COUNT(is_correct)*2.5']
+                dic['Summary Only_set1'] = res_set1_6[i]['SUM(is_correct)']*2.5
             if len(res_set2_6) > 0 and i<len(res_set2_6):
-                dic['studentID'] = res_set2_6[i]['studentID']
-                dic['name'] = res_set2_6[i]['name']
-                dic['studentAge'] = res_set2_6[i]['studentAge']
-                dic['studentGender'] = res_set2_6[i]['studentGender']
-                dic['Summary Only_set2'] = res_set2_6[i]['COUNT(is_correct)*2.5']
+                dic['Summary Only_set2'] = res_set2_6[i]['SUM(is_correct)']*2.5
             if len(res_set3_6) > 0 and i<len(res_set3_6):
-                dic['studentID'] = res_set3_6[i]['studentID']
-                dic['name'] = res_set3_6[i]['name']
-                dic['studentAge'] = res_set3_6[i]['studentAge']
-                dic['studentGender'] = res_set3_6[i]['studentGender']
-                dic['Summary Only_set3'] = res_set3_6[i]['COUNT(is_correct)*2.5']
+                dic['Summary Only_set3'] = res_set3_6[i]['SUM(is_correct)']*2.5
             res.append(dic)
-        # print(res)
         return res
-
-
 
 
 @app.get("/avgResults/{test_name}")
@@ -635,7 +561,6 @@ def get_answer_by_test_name_AVG(test_name: str):
             if len(res_set3_6) > 0:
                 dic['Summary Only_set3'] = res_set3_6[i]['AVG(time_to_answer)']
             res.append(dic)
-        # print(res)
         return res
 
 @app.get("/readingResults/{test_name}")
@@ -703,7 +628,6 @@ def get_answer_by_test_name_reading_timee(test_name: str):
             if len(res_set3_6) > 0 and i<len(res_set3_6):
                 dic['Summary Only_set3'] = res_set3_6[i]['ReadingTime']
             res.append(dic)
-        # print(res)
         return res
 
 @app.get("/summaryResults/{test_name}")
@@ -728,7 +652,6 @@ def get_answer_by_test_name_summary_time(test_name: str):
         res_set3_4 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "IncreasedFont", 3)
         res_set3_5 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "GradualFont", 3)
         res_set3_6 = StudentAnswersRepository.get_answer_by_test_name_reading_time("\'" + test_name + "\'", "SummaryOnly", 3)
-        print(res_set1_1)
         for i in range(len(res_set1_1)):
             dic = {}
             dic['studentID'] = res_set1_1[i]['studentID']
@@ -772,7 +695,6 @@ def get_answer_by_test_name_summary_time(test_name: str):
             if len(res_set3_6) > 0 and i < len(res_set3_6):
                 dic['Summary Only_set3'] = res_set3_6[i]['SummaryTime']
             res.append(dic)
-        print(res)
         return res
 
 

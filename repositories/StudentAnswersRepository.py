@@ -17,3 +17,6 @@ def correct_answers_count(testName):
 
 def get_answer_by_test_name_reading_time(testName, visualization, set_num):
     return StudentAnswersConcrete.get_answer_by_test_name_reading_time(testName, visualization, set_num)
+
+def get_student_details(testName):
+    return StudentAnswersConcrete.get_student_details(testName)
