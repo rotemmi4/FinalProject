@@ -34,14 +34,20 @@ def get_random_text(numOfText):
             if((num not in randomTexts) and (num in texts)):
                 randomTexts.append(num)
                 found = True
-    index=0
+    index=1
     for j in randomTexts:
 
         dic={}
         text=TextConcrete.get_text_by_id(j)[0]
         dic["id"]=text["id"]
         dic["name"]=text["name"]
-        dic["set"]=(index%3)+1
+        if(index<7):
+            dic["set"]=1
+        elif (index<13):
+            dic["set"] = 2
+        else:
+            dic["set"] = 3
+
         index+=1
         res.append(dic)
     # for j in range(len(texts)):
