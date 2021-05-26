@@ -59,7 +59,7 @@ def get_random_visualization(numOfVisualizations):
         elif visu == 2 :
             res.append("Highlight")
         elif visu == 3 :
-            res.append("Increased Font")
+            res.append("Font")
         elif visu == 4 :
             res.append("Gradual Font")
         else :
