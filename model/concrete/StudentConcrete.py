@@ -4,9 +4,9 @@ from model.dao import StudenInfoDAO, questionsDAO, AnswersDAO
 
 # Building a query - Step 2
 
-def insert_info(student_id, age, gender, studentName):
+def insert_info(student_id, age, gender, studentName, studentDivision):
     query = StudenInfoDAO.insert_info()
-    val = (student_id, age, gender, studentName)
+    val = (student_id, age, gender, studentName, studentDivision)
     return sqlliteDButils.execute_run(query, val)
 
 def get_test_ids():

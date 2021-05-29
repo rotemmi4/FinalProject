@@ -1,8 +1,8 @@
 from model.concrete import StudentConcrete
 
 
-def insert_info(student_id, age, gender, studentName):
-    return StudentConcrete.insert_info(student_id, age, gender, studentName)
+def insert_info(student_id, age, gender, studentName, studentDivision):
+    return StudentConcrete.insert_info(student_id, age, gender, studentName, studentDivision)
 
 
 # def update_text(id, name, content):
