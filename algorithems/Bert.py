@@ -9,50 +9,31 @@ from summarizer import Summarizer
 
 sample_doc = '''
 
-FORMER Panamanian leader General Manuel Antonio Noriega's defence against
-drug trafficking charges in Miami gained ground this week. A Drug
-Enforcement Administration agent acknowledged that a man identified by the
-prosecution as a Medelln cocaine cartel money launderer had been arrested on
-the basis of information from forces commanded by Gen Noriega.
-The testimony by Mr James L. Bramble, in charge of the DEA's Panama
-operations from August 1982 until June 1984, raised questions about earlier
-prosecution claims that Gen Noriega had protected the cartel's operations in
-Panama in return for pay-offs.
-Prosecutors had cited the money launderer, Mr Ramon Milian Rodriguez, as a
-conduit for drug money from the US to bank accounts controlled by the cartel
-in Panama. According to the DEA, Mr Milian was responsible for transferring
-Dollars 200m in drug profits from the US to Panama.
-Mr Bramble acknowledged that the information that led to Mr Milian's arrest
-had been independently developed by Panamanian narcotics officers and passed
-on to the DEA.
-When Mr Milian was arrested in Florida, government agents seized Dollars
-5.5m in cash, more than 61 pounds of cocaine, and a Lear jet aircraft.
-In other testimony, former DEA agent Mr Arthur Sedillo, stationed in Panama
-from August 1977 until August 1979, read a cable from the then-chief
-administrator of the DEA, Mr Peter Bensinger, in which Mr Bensinger asked
-that Gen Noriega be congratulated for his role in an 'impressive seizure' of
-cocaine being smuggled to the US via Panama.
-The defence, by calling current and former government officials and
-requiring them to read documents they wrote on Gen Noriega's efforts in drug
-law enforcement, is attempting to counter the prosecution claim that Gen
-Noriega turned Panama into a haven for Colombian drug dealers.
-Mr Bensinger and another former DEA chief administrator, Mr John Lawn,
-argued that the kind words they may have written about Gen Noriega were
-diplomatic niceties rather than statements of fact. But letters and
-memoranda by Mr Sedillo and Mr Bramble also referred to co-operation between
-the DEA and Panamanian forces under Gen Noriega's command.
-Mr Frank Rubino, lead defence counsel, said in an interview that showing the
-extent of this co-operation was a central part of the defence strategy. When
-Mr Bramble has testified he is expected to be followed by another DEA agent
-who worked in Panama.
-Mr May and Mr Rubino expect to finish presenting their case in 4-6 weeks,
-when the prosecution is expected to offer a rebuttal.
+Her critics see her as more than the supportive spouse who'll accompany her husband, Clarence, through his Senate confirmation hearings, which began Tuesday and are likely to run through next week. They see a woman with strong opinions on issues that are bound to come before the court.; Some women's-rights activists are upset by her lobbying against such issues as comparable-worth legislation. Some religious rights groups are troubled by her anti-cult activities in light of her former involvement with Lifespring, a motivational group.; Skin color an issue; Even the color of her skin is being used to determine the content of Clarence Thomas's character. 
+The fact that she is white has drawn criticism from some blacks who see the marriage as evidence that Clarence Thomas has rejected his roots.; In their respective careers, the Thomases have embraced the view that women and minorities are hindered, rather than helped, by affirmative action and government programs. True equality is achieved by holding everyone to the same standard, they believe.; "I don't think it's fair to say she's anti-women's rights," said Ricky Silberman, vice chairwoman of the EEOC and a friend of the Thomases. She said Virginia Thomas opposed legislation on comparable worth because it would have involved the government in determining wages, which is "not good for the economy, not good for workers, not good for women."
+ Conservative viewpoint; Virginia Thomas has represented the conservative viewpoint in her jobs as a staffer for a Republican congressman, spokeswoman at the U.S. Chamber of Congress and deputy assistant secretary at the Department of Labor.;  Clarence Thomas advocates a colorblind society, and his marriage may be an example of that philosophy. But others see a different symbolism.; "His marrying a white woman is a sign of his rejection of the black community," said Russell Adams, chairman of Howard University's department of Afro-American studies. "Great justices have had community roots that served as a basis for understanding the Constitution. Clarence's lack of a sense of community makes his nomination troubling." Religious leaders wonder, Some religious leaders are troubled as well. Dean Kelley, the National Council of Churches' counselor on religious liberty, wrote a critique of Clarence Thomas that was used as grounds for his organization's opposition to the Supreme Court nominee. The author did not mention Virginia Thomas in his text, but has said he was concerned about her involvement in the Cult Awareness Network (CAN), a Chicago-based organization that says it educates the public about "destructive" cults. That involvement, he said, might affect her husband's handling of religious-liberty cases if he shares her views on the subject.
+  During the early '80s, Virginia Thomas enrolled in Lifespring, a self-help course that challenges students to take responsibility for their lives. A small percentage of the program's 300,000 graduates have been deeply disturbed by Lifespring's methods, which involve intense emotional self-examination.;  A clean break; Virginia Thomas was troubled by some of Lifespring's activities and eventually broke with the organization. Since 1985, she has been a public advocate against cult activities.; When she served as a labor-relations attorney at the U.S. Chamber of Commerce from 1985 to 1989, she represented the interests of the business community at congressional hearings on such issues as comparable worth, affirmative action and federal child-care legislation.
+
 '''
-model = Summarizer()
-result = model(sample_doc, min_length=1,max_length=10000000,ratio=0.1)
+#model = Summarizer()
+#result = model(sample_doc, min_length=1,max_length=10000000,ratio=0.1)
 # features=model.features
 # centroids=model.centroids
 # args=model.args
 #model.df=df
-print(model.df)
+#print(model.df)
 
+def Bert_alg(text):
+    ans=[]
+    model=Summarizer()
+    result = model(sample_doc, min_length=1,max_length=10000000,ratio=0.1)
+    for index, row in model.df.iterrows():
+        dic = {
+            "sentenceNum": row['Id'],
+            "content": row['Sent'],
+            "weight": row['Weight'],
+        }
+        ans.append(dic)
+    return ans
+
+print(Bert_alg(sample_doc))
