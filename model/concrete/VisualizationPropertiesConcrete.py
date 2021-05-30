@@ -29,7 +29,7 @@ def get_visualization_type(visualization):
         return "Highlight"
     elif (visualization == "Gradual Highlight"):
         return "GradualHighlight"
-    elif (visualization == "Increased Font"):
+    elif (visualization == "Font"):
         return "IncreasedFont"
     elif (visualization == "Gradual Font"):
         return "GradualFont"

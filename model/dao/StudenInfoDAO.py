@@ -1,6 +1,6 @@
 
 def insert_info():
-    return ("INSERT INTO StudentInfo (studentID, studentAge, studentGender, name) values (?,?,?,?);")
+    return ("INSERT INTO StudentInfo (studentID, studentAge, studentGender, name, studentDivision) values (?,?,?,?,?);")
 
 def get_test_ids():
     return ("SELECT test_id FROM visualiztion_properties")

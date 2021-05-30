@@ -87,6 +87,7 @@ class StudentInfo(BaseModel):
     studentAge: int
     studentGender: str
     studentName: str
+    studentDivision: str
 
 class RankCreate(BaseModel):
     student_id: int
@@ -260,8 +261,8 @@ def set_info_student(student_info: StudentInfo):
     studentAge = student_info.studentAge
     studentGender = student_info.studentGender
     studentName = student_info.studentName
-    return StudentRepository.insert_info(studentID, studentAge, studentGender, studentName)
-    # pass
+    studentDivision = student_info.studentDivision
+    return StudentRepository.insert_info(studentID, studentAge, studentGender, studentName, studentDivision)
 
 @app.get("/student/get_test_id")
 def get_test_id():

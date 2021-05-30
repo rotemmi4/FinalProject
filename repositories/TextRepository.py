@@ -34,8 +34,22 @@ def get_random_text(numOfText):
             if((num not in randomTexts) and (num in texts)):
                 randomTexts.append(num)
                 found = True
+    index=1
     for j in randomTexts:
-        res.append(TextConcrete.get_text_by_id(j)[0])
+
+        dic={}
+        text=TextConcrete.get_text_by_id(j)[0]
+        dic["id"]=text["id"]
+        dic["name"]=text["name"]
+        if(index<7):
+            dic["set"]=1
+        elif (index<13):
+            dic["set"] = 2
+        else:
+            dic["set"] = 3
+
+        index+=1
+        res.append(dic)
     # for j in range(len(texts)):
     #     if(texts[j]["id"] in randomTexts):
     #         res.append(texts[j])
@@ -59,7 +73,7 @@ def get_random_visualization(numOfVisualizations):
         elif visu == 2 :
             res.append("Highlight")
         elif visu == 3 :
-            res.append("Increased Font")
+            res.append("Font")
         elif visu == 4 :
             res.append("Gradual Font")
         else :
