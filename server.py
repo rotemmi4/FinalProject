@@ -389,6 +389,7 @@ def get_answer_by_test_name_SUM(test_name: str):
             dic['name'] = res_set1_1[i]['name']
             dic['studentAge'] = res_set1_1[i]['studentAge']
             dic['studentGender'] = res_set1_1[i]['studentGender']
+            dic['studentDivision'] = res_set1_1[i]['studentDivision']
             if len(res_set1_1) > 0:
                 dic['Without Visualization_set1'] = res_set1_1[i]['SUM(time_to_answer)']
             if len(res_set2_1) > 0:
@@ -456,6 +457,7 @@ def get_answer_by_test_name_COUNT(test_name: str):
             dic['name'] = res_set1_1[i]['name']
             dic['studentAge'] = res_set1_1[i]['studentAge']
             dic['studentGender'] = res_set1_1[i]['studentGender']
+            dic['studentDivision'] = res_set1_1[i]['studentDivision']
             if len(res_set1_1) > 0 and i<len(res_set1_1):
                 dic['Without Visualization_set1'] = res_set1_1[i]['SUM(is_correct)']*2.5
             if len(res_set2_1) > 0 and i<len(res_set2_1):
@@ -524,6 +526,7 @@ def get_answer_by_test_name_AVG(test_name: str):
             dic['name'] = res_set1_1[i]['name']
             dic['studentAge'] = res_set1_1[i]['studentAge']
             dic['studentGender'] = res_set1_1[i]['studentGender']
+            dic['studentDivision'] = res_set1_1[i]['studentDivision']
             if len(res_set1_1) > 0:
                 dic['Without Visualization_set1'] = res_set1_1[i]['AVG(time_to_answer)']
             if len(res_set2_1) > 0:
@@ -591,6 +594,7 @@ def get_answer_by_test_name_reading_timee(test_name: str):
             dic['name'] = res_set1_1[i]['name']
             dic['studentAge'] = res_set1_1[i]['studentAge']
             dic['studentGender'] = res_set1_1[i]['studentGender']
+            dic['studentDivision'] = res_set1_1[i]['studentDivision']
             if len(res_set1_1) > 0 and i<len(res_set1_1):
                 dic['Without Visualization_set1'] = res_set1_1[i]['ReadingTime']
             if len(res_set2_1) > 0 and i<len(res_set2_1):
@@ -658,6 +662,7 @@ def get_answer_by_test_name_summary_time(test_name: str):
             dic['name'] = res_set1_1[i]['name']
             dic['studentAge'] = res_set1_1[i]['studentAge']
             dic['studentGender'] = res_set1_1[i]['studentGender']
+            dic['studentDivision'] = res_set1_1[i]['studentDivision']
             if len(res_set1_1) > 0 and i < len(res_set1_1):
                 dic['Without Visualization_set1'] = res_set1_1[i]['SummaryTime']
             if len(res_set2_1) > 0 and i < len(res_set2_1):
