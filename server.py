@@ -1129,7 +1129,7 @@ def convert_visualization_ids_to_types(id):
     elif id == 1:
         return "Gradual Highlight"
     elif id == 3:
-        return "Increased Font"
+        return "Font"
     elif id == 4:
         return "Gradual Font"
     elif id == 5:
