@@ -1086,20 +1086,33 @@ def getTestProperties(test_info: str):
         elif text['set_num'] == 2:
             second_set.append(text)
         else:
-            max_value = 0.0
-            min_value = 1.0
+            max_value = -1.0
+            min_value = 2.0
+            changed_max = False
+            changed_min = False
+            change_summary = False
+            if text['type'] == "Summary Only":
+                change_summary = True
             for sentence in text['sentences']:
                 if float(sentence["weight"]) < min_value:
                     min_value = float(sentence["weight"])
+                    # print(min_value)
                 if float(sentence["weight"]) > max_value:
                     max_value = float(sentence["weight"])
-
+            # print("-" * 80)
             for sentence in text['sentences']:
-                if float(sentence["weight"]) == min_value:
+                if float(sentence["weight"]) == min_value and not changed_max:
                     sentence["weight"] = str(max_value)
-                if float(sentence["weight"]) == max_value:
+                    # print("max:", sentence)
+                    changed_max = True
+                if float(sentence["weight"]) == max_value and not changed_min and not change_summary:
                     sentence["weight"] = str(min_value)
+                    # print("min:", sentence)
+                    changed_min = True
+
             third_set.append(text)
+            changed_max = False
+            changed_min = False
 
     random.shuffle(first_set)
     random.shuffle(second_set)
