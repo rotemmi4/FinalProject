@@ -3,7 +3,7 @@ import random
 import uvicorn as uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 #from more_itertools import take
-
+import numpy as np
 from repositories import TextRepository, VisualizationPropertiesRepository, QuestionRepository, AnswerRepository, \
     TestTypeRepository, RankRepository
 from pydantic import BaseModel
@@ -1025,6 +1025,9 @@ def get_answer_by_test_name_summary(test_name: str):
                 if res_all[j]['studentID']==dic['studentID'] and res_all[j]['type']=='SummaryOnly' and res_all[j]['set_num']==3:
                     dic['Summary Only_set3'] = res_all[j]['Summary']
             res.append(dic)
+
+            with open("file.txt", "w") as output:
+                output.write(str(res))
         # print(res)
         return res
 
